@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Status — Tinu's Kitchen Bistro</title>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <style>
+    body { background: #1C1C1C; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; font-family: 'Outfit', sans-serif; }
+    .tracker-wrap { max-width: 480px; width: 100%; }
+    .tracker-logo { text-align: center; margin-bottom: 32px; font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; }
+    .tracker-logo span { color: #D4A017; }
+    .tracker-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 32px; }
+    .tracker-ref { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+    .tracker-ref-val { font-size: 1rem; font-weight: 700; color: #D4A017; margin-bottom: 28px; }
+    .tracker-steps { display: flex; flex-direction: column; gap: 0; }
+    .t-step { display: flex; align-items: flex-start; gap: 14px; }
+    .t-dot-col { display: flex; flex-direction: column; align-items: center; }
+    .t-dot { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+    .t-dot.done { background: #25D366; color: #fff; }
+    .t-dot.active { background: #D4A017; color: #1C1C1C; }
+    .t-dot.pending { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2); }
+    .t-line { width: 2px; height: 28px; margin: 3px 0; }
+    .t-line.done { background: #25D366; }
+    .t-line.pending { background: rgba(255,255,255,0.08); }
+    .t-info { padding-top: 2px; padding-bottom: 28px; }
+    .t-name { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+    .t-name.pending { color: rgba(255,255,255,0.3); }
+    .t-name.active { color: #D4A017; }
+    .t-time { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+    .tracker-loading { text-align: center; color: rgba(255,255,255,0.4); padding: 40px; }
+    .tracker-error { text-align: center; color: rgba(255,100,100,0.8); padding: 20px; font-size: 0.9rem; }
+    .tracker-wa { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; background: #25D366; color: #fff; padding: 13px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+    .tracker-wa:hover { background: #1aab53; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div class="tracker-wrap">
+    <div class="tracker-logo">Tinu's Kitchen <span>Bistro</span></div>
+    <div class="tracker-card">
+      <div id="trackerContent" class="tracker-loading">Loading your order...</div>
+    </div>
+  </div>
+
+  <script>
+    const STATUS_STEPS = [
+      { key: 'pending',    label: 'Order Received',   timeKey: 'paid_at' },
+      { key: 'confirmed',  label: 'Order Confirmed',   timeKey: 'confirmed_at' },
+      { key: 'preparing',  label: 'Being Prepared',    timeKey: null },
+      { key: 'ready',      label: 'Ready / Out for Delivery', timeKey: 'ready_at' },
+      { key: 'delivered',  label: 'Delivered',         timeKey: 'delivered_at' },
+    ];
+    const ORDER_INDEX = { pending:0, confirmed:1, preparing:2, ready:3, delivered:4 };
+
+    function fmt(ts) {
+      if (!ts) return '';
+      return new Date(ts).toLocaleTimeString('en-NG', { hour:'2-digit', minute:'2-digit' });
+    }
+
+    function renderTracker(order) {
+      const currentIdx = ORDER_INDEX[order.status] ?? 0;
+      const ref = document.createElement('div');
+      ref.innerHTML = `
+        <div class="tracker-ref">Your Order Reference</div>
+        <div class="tracker-ref-val">${order.reference || ''}</div>
+        <div class="tracker-steps">
+          ${STATUS_STEPS.map((step, i) => {
+            const isDone   = i < currentIdx;
+            const isActive = i === currentIdx;
+            const dotClass = isDone ? 'done' : isActive ? 'active' : 'pending';
+            const nameClass = isDone ? '' : isActive ? 'active' : 'pending';
+            const lineClass = isDone ? 'done' : 'pending';
+            const timeStr  = step.timeKey ? fmt(order[step.timeKey]) : '';
+            const isLast   = i === STATUS_STEPS.length - 1;
+            return `
+              <div class="t-step">
+                <div class="t-dot-col">
+                  <div class="t-dot ${dotClass}">${isDone ? '✓' : i+1}</div>
+                  ${!isLast ? `<div class="t-line ${lineClass}"></div>` : ''}
+                </div>
+                <div class="t-info">
+                  <div class="t-name ${nameClass}">${step.label}</div>
+                  ${timeStr ? `<div class="t-time">${timeStr}</div>` : ''}
+                </div>
+              </div>`;
+          }).join('')}
+        </div>
+        <a href="https://wa.me/2348162918036?text=Hi! I'd like to check on my order. Reference: ${order.reference || ''}" target="_blank" class="tracker-wa">
+          Chat with us on WhatsApp
+        </a>`;
+      document.getElementById('trackerContent').innerHTML = '';
+      document.getElementById('trackerContent').appendChild(ref);
+    }
+
+    async function loadOrder() {
+      const params = new URLSearchParams(window.location.search);
+      const ref = params.get('ref');
+      if (!ref) {
+        document.getElementById('trackerContent').innerHTML = '<div class="tracker-error">No order reference found. Please check your confirmation message.</div>';
+        return;
+      }
+      try {
+        const res = await fetch(`/.netlify/functions/order-status?reference=${ref}`);
+        const data = await res.json();
+        if (data.order) {
+          renderTracker(data.order);
+          // Auto-refresh every 30 seconds
+          setTimeout(loadOrder, 30000);
+        } else {
+          document.getElementById('trackerContent').innerHTML = '<div class="tracker-error">Order not found. Please contact us on WhatsApp.</div>';
+        }
+      } catch (e) {
+        document.getElementById('trackerContent').innerHTML = '<div class="tracker-error">Could not load order. Please try again or contact us on WhatsApp.</div>';
+      }
+    }
+
+    loadOrder();
+  </script>
+</body>
+</html>

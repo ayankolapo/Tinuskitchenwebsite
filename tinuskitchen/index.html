@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="robots" content="index, follow"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231C1C1C'/><text y='72' font-size='65' text-anchor='middle' x='50'>🍛</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231C1C1C'/><text y='72' font-size='65' text-anchor='middle' x='50'>🍛</text></svg>">
+  <title>Tinu's Kitchen Bistro | Nigerian Restaurant in Iba, Ojo, Lagos</title>
+<meta name="description" content="Tinu's Kitchen Bistro serves fresh Nigerian food, catering, and private dining in Iba, Ojo, Lagos. Order Jollof rice, pasta, sandwiches, and more via WhatsApp. Delivery across Ojo and Lagos mainland."/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<meta property="og:title" content="Tinu's Kitchen Bistro | Nigerian Food, Iba Lagos"/>
+  <meta property="og:description" content="Fresh Nigerian food cooked daily. Order Jollof, Spaghetti, catering and reserve private dining on WhatsApp."/>
+  <meta property="og:type" content="restaurant"/>
+  <meta property="og:locale" content="en_NG"/>
+  <meta name="theme-color" content="#1C1C1C"/>
+<link rel="canonical" href="https://tinuskitchenbistro.com"/>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Tinu's Kitchen Bistro",
+    "description": "Fresh Nigerian food, catering from 50 packs, and private dining in Iba, Ojo, Lagos. Order Jollof rice, pasta, sandwiches and more via WhatsApp.",
+    "url": "https://tinuskitchenbistro.com",
+    "telephone": "+2348162918036",
+    "priceRange": "₦₦",
+    "servesCuisine": ["Nigerian", "Continental"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ipaye Bus Stop, Lasu Road",
+      "addressLocality": "Iba, Ojo",
+      "addressRegion": "Lagos State",
+      "addressCountry": "NG"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 6.4698,
+      "longitude": 3.1662
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    "hasMap": "https://www.google.com/maps/search/Tinus+Kitchen+Bistro+Ipaye+Bus+Stop+Lasu+Road+Iba+Ojo+Lagos",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+2348162918036",
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://instagram.com/tinus_kitchen_bistro1"
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+      <div class="nav-logo-wrap-inner">
+        <img loading="lazy" src="/images/tinu-s-kitchen-bistro.jpeg" alt="Tinu's Kitchen Bistro"/>
+        <div class="nav-logo-name">Tinu's Kitchen <span>Bistro</span></div>
+      </div>
+    </a>
+    <div class="nav-right">
+      
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleNav()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- FULLSCREEN NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="nav-overlay-close" onclick="toggleNav()" aria-label="Close menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+
+  <div class="nav-overlay-inner">
+    <div class="nav-overlay-logo-img">
+    <img loading="lazy" src="/images/tinu-s-kitchen-bistro.jpeg" alt="Tinu's Kitchen Bistro"/>
+  </div>
+    <nav class="nav-overlay-links">
+      <a href="#hero"         onclick="navTo('hero')" class="nav-ol"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Home</a>
+      <a href="#menu"         onclick="navTo('menu')" class="nav-ol"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg> Menu</a>
+      <a href="#reservation"  onclick="navTo('reservation')" class="nav-ol"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg> Reserve a Space</a>
+      <a href="#about"        onclick="navTo('about')" class="nav-ol"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> Our Story</a>
+      <a href="#gallery"      onclick="navTo('gallery')" class="nav-ol"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Gallery</a>
+      <a href="#reviews"      onclick="navTo('reviews')" class="nav-ol"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> Reviews</a>
+      <a href="#location"     onclick="navTo('location')" class="nav-ol"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Contact</a>
+    </nav>
+
+
+  </div>
+</div>
+<!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-slide active active" style="background-image:url('/images/hero-1.jpeg')"></div>
+  <div class="hero-bg-slide" style="background-image:url('/images/hero-2.jpeg')"></div>
+  <div class="hero-bg-slide" style="background-image:url('/images/hero-3.jpeg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    
+    
+    <h1 class="hero-title"><span class="blur-word">A</span> <span class="blur-word">Good</span> <span class="blur-word">Day</span> <span class="blur-word">Starts</span> <span class="blur-word">With<br/></span> <span class="blur-word"><em>Finger</span> <span class="blur-word">Licking</span> <span class="blur-word">Delicacies</em></span></h1>
+    <p class="hero-sub reveal">Fresh Nigerian food, made to order. Iba, Lagos.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20place%20an%20order.%20What%20is%20available%20today%3F" target="_blank" rel="noopener noreferrer" class="btn-primary">Order on WhatsApp</a>
+      <a href="#menu" class="btn-outline">View Menu</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">6,500+</span><span class="stat-label">Customers Served</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">5.0</span><span class="stat-label">Star Rating</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Events Catered</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">7 Days</span><span class="stat-label">Always Open</span></div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-line"></div></div>
+  </section>
+<section class="meals" id="meals">
+    <div class="meals-header reveal">
+    <h2 class="section-title"><span class="txt-reveal-wrap"><span class="txt-reveal">Made to <span>Satisfy</span></span></span></h2><span class="gold-line"></span>
+    <p class="section-sub">Cooked fresh. Every order, every time.</p>
+  </div>
+  <div class="meals-grid">
+
+    <!-- Jollof Rice -->
+    <div class="meal-card stagger-child reveal">
+      <div class="meal-img-wrap">
+        <img loading="lazy" src="/images/jollof-rice-combo.jpeg" alt="Jollof Rice Combo" class="meal-img"/>
+        
+      </div>
+      <div class="meal-body">
+        <div class="meal-name">Jollof Rice Combo</div>
+        <p class="meal-desc">Smoky party Jollof, deep red and rich. Your choice of chicken or beef. Ask anyone in Iba.</p>
+        <div class="meal-footer">
+          <div class="meal-price">₦5,000</div>
+          <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20order%20the%20Jollof%20Rice%20Combo%20%E2%82%A65%2C000.%20Please%20let%20me%20know%20the%20available%20proteins%20(chicken%2C%20beef%2C%20assorted)%20and%20confirm%20availability.%20I%27m%20ready%20to%20order%20now!" target="_blank" rel="noopener noreferrer" class="meal-order">Order Jollof →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spaghetti -->
+    <div class="meal-card stagger-child reveal" style="transition-delay:0.1s">
+      <div class="meal-img-wrap">
+        <img loading="lazy" src="/images/spaghetti-special-with-plantain.jpeg" alt="Spaghetti Special with Plantain" class="meal-img"/>
+        
+      </div>
+      <div class="meal-body">
+        <div class="meal-name">Spaghetti Special + Plantain</div>
+        <p class="meal-desc">Stir-fried spaghetti with bell peppers, chicken or turkey, and a side of fried plantain. The one people keep coming back for.</p>
+        <div class="meal-footer">
+          <div class="meal-price">₦10,000</div>
+          <a href="https://wa.me/2348162918036?text=Hello%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9D%20I%20want%20to%20order%20the%20Spaghetti%20Special%20with%20Plantain.%20Is%20it%20available%20now%3F%20Please%20confirm%20the%20price%20and%20how%20long%20delivery%20will%20take.%20Thanks!" target="_blank" rel="noopener noreferrer" class="meal-order">Order Spaghetti →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk Packs -->
+    <div class="meal-card stagger-child reveal" style="transition-delay:0.2s">
+      <div class="meal-img-wrap">
+        <img loading="lazy" src="/images/classic-chicken-sandwich-and-milkshake-c.jpeg" alt="Classic Chicken Sandwich and Milkshake Combo" class="meal-img"/>
+        
+      </div>
+      <div class="meal-body">
+        <div class="meal-name">Classic Chicken Sandwich &amp; Milkshake Combo</div>
+        <p class="meal-desc">Chicken sandwich with our house sauce, paired with a Milkshake. Strawberry, Vanilla or Oreos — your pick.</p>
+        <div class="meal-footer">
+          <div class="meal-price">₦9,000</div>
+          <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%A7%87%20I%27d%20like%20to%20order%20the%20Classic%20Chicken%20Sandwich%20%26%20Milkshake%20Combo.%20Please%20confirm%20availability%20and%20my%20Milkshake%20flavour%20options." target="_blank" rel="noopener noreferrer" class="meal-order">Order Combo →</a>
+        </div>
+      </div>
+    </div>
+
+  
+    <!-- TKB Signature Rice featured card -->
+    <div class="meal-card stagger-child reveal" style="transition-delay:0.3s">
+      <div class="meal-img-wrap">
+        <img loading="lazy" src="/images/tkb-signature-rice.jpeg" alt="TKB Signature Rice" class="meal-img"/>
+        
+      </div>
+      <div class="meal-body">
+        <div class="meal-name">TKB Signature Rice</div>
+        <p class="meal-desc">Tinu D chef special creation a vibrant mix of seasoned rice, smoky beef, sweet corn, peppers and plantain. Bold, colourful and utterly unique to Tinu's Kitchen bistro.</p>
+        <div class="meal-footer">
+          <div class="meal-price">₦2,000</div>
+          <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20order%20the%20TKB%20Signature%20Rice%20%E2%82%A62%2C000.%20Is%20it%20available%20now%3F%20Please%20confirm!" target="_blank" rel="noopener noreferrer" class="meal-order">Order Now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+<section id="menu" style="padding:80px 0;background:var(--charcoal);position:relative;overflow:hidden;">
+    <!-- background texture -->
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(212,160,23,0.07),transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(192,24,42,0.08),transparent 60%);pointer-events:none"></div>
+
+  <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 5%">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="section-label" style="color:var(--gold)">Full Menu</div>
+      <h2 class="section-title" style="color:var(--white)">The <span style="color:var(--gold)">Menu</span></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.6);margin:14px auto 0;text-align:center;max-width:520px">Fresh daily. Tap any dish to order directly on WhatsApp no middleman, straight to the Restaurant Line.</p>
+    </div>
+
+    <!-- Tab Nav -->
+    <div id="menuTabs" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:48px">
+      <button class="mtab active" data-tab="rice" onclick="switchTab('rice')">Rice</button>
+      <button class="mtab" data-tab="pasta" onclick="switchTab('pasta')">Pasta</button>
+      <button class="mtab" data-tab="street" onclick="switchTab('street')">Street Food</button>
+      <button class="mtab" data-tab="soups" onclick="switchTab('soups')">Soups</button>
+      <button class="mtab" data-tab="swallow" onclick="switchTab('swallow')">Swallow</button>
+      <button class="mtab" data-tab="protein" onclick="switchTab('protein')">Protein & Sides</button>
+      <button class="mtab" data-tab="alacarte" onclick="switchTab('alacarte')">A La Carte</button>
+    </div>
+
+    <!-- ── RICE ─────────────────────────────────── -->
+    <div class="mpanel" id="tab-rice">
+      <div class="menu-grid">
+        <div class="mcard mcard-with-thumb">
+          <div class="mcard-thumb-wrap">
+            <img src="/images/jollof-rice.jpeg" alt="Jollof Rice" class="mcard-thumb" loading="lazy"/>
+            <div class="mcard-thumb-badge">⭐ Best Seller</div>
+          </div>
+          <div class="mcard-info">
+            <span class="mcard-name">Jollof Rice</span>
+          </div>
+          <div class="mcard-footer">
+            <span class="mcard-price">₦1,000</span>
+            <button class="mcard-btn" data-cart-key="jollof_rice" data-name="Jollof Rice" data-price="1000" onclick="addToCart('jollof_rice','Jollof Rice','1000')">Add to Cart</button>
+          </div>
+        </div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Steamed White Rice</span><span class="mcard-price">₦1,000</span></div><button class="mcard-btn" data-cart-key="steamed_white_rice" data-name="Steamed White Rice" data-price="1000" onclick="addToCart('steamed_white_rice', 'Steamed White Rice', '1000')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Asun Rice</span><span class="mcard-price">₦2,000</span></div><button class="mcard-btn" data-cart-key="asun_rice" data-name="Asun Rice" data-price="2000" onclick="addToCart('asun_rice', 'Asun Rice', '2000')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Ofada Rice</span><span class="mcard-price">₦1,000</span></div><button class="mcard-btn" data-cart-key="ofada_rice" data-name="Ofada Rice" data-price="1000" onclick="addToCart('ofada_rice', 'Ofada Rice', '1000')">Add to Cart</button></div>
+        <div class="mcard mcard-special mcard-with-thumb">
+          <div class="mcard-thumb-wrap">
+            <img src="/images/tkb-signature-rice.jpeg" alt="TKB Signature Rice" class="mcard-thumb" loading="lazy"/>
+            <div class="mcard-thumb-badge"> Must Try !</div>
+          </div>
+          <div class="mcard-info">
+            <span class="mcard-name">TKB Signature Rice <span class="mcard-tag">Signature</span></span>
+          </div>
+          <div class="mcard-footer">
+            <span class="mcard-price">₦2,000</span>
+            <button class="mcard-btn" data-cart-key="tkb_signature_rice" data-name="TKB Signature Rice" data-price="2000" onclick="addToCart('tkb_signature_rice','TKB Signature Rice','2000')">Add to Cart</button>
+          </div>
+        </div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Basmati Fried Rice</span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="basmati_fried_rice" data-name="Basmati Fried Rice" data-price="1500" onclick="addToCart('basmati_fried_rice', 'Basmati Fried Rice', '1500')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Native Rice</span><span class="mcard-price">₦2,000</span></div><button class="mcard-btn" data-cart-key="native_rice" data-name="Native Rice" data-price="2000" onclick="addToCart('native_rice', 'Native Rice', '2000')">Add to Cart</button></div>
+        <div class="mcard mcard-special"><div class="mcard-info"><span class="mcard-name">Coconut Rice <span class="mcard-tag">Signature</span></span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="coconut_rice" data-name="Coconut Rice" data-price="1500" onclick="addToCart('coconut_rice', 'Coconut Rice', '1500')">Add to Cart</button></div>
+      </div>
+    </div>
+
+    <!-- ── PASTA ─────────────────────────────────── -->
+    <div class="mpanel" id="tab-pasta" style="display:none">
+      <div class="menu-grid">
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Stir Fry Pasta</span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="stir_fry_pasta" data-name="Stir Fry Pasta" data-price="1500" onclick="addToCart('stir_fry_pasta', 'Stir Fry Pasta', '1500')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Native Pasta</span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="native_pasta" data-name="Native Pasta" data-price="1500" onclick="addToCart('native_pasta', 'Native Pasta', '1500')">Add to Cart</button></div>
+        <div class="mcard mcard-special mcard-with-thumb">
+          <div class="mcard-thumb-wrap">
+            <img src="/images/beefy-jollof-pasta.jpeg" alt="Beefy Jollof Pasta" class="mcard-thumb" loading="lazy"/>
+            <div class="mcard-thumb-badge"> Fan Fave </div>
+          </div>
+          <div class="mcard-info">
+            <span class="mcard-name">Beefy Jollof Pasta <span class="mcard-tag">Fan Fave</span></span>
+          </div>
+          <div class="mcard-footer">
+            <span class="mcard-price">₦2,000</span>
+            <button class="mcard-btn" data-cart-key="beefy_jollof_pasta" data-name="Beefy Jollof Pasta" data-price="2000" onclick="addToCart('beefy_jollof_pasta','Beefy Jollof Pasta','2000')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STREET FOOD ─────────────────────────────── -->
+    <div class="mpanel" id="tab-street" style="display:none">
+      <div class="menu-grid">
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Ewa Agoyin</span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="ewa_agoyin" data-name="Ewa Agoyin" data-price="1500" onclick="addToCart('ewa_agoyin', 'Ewa Agoyin', '1500')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Yam Porridge</span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="yam_porridge" data-name="Yam Porridge" data-price="1500" onclick="addToCart('yam_porridge', 'Yam Porridge', '1500')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Yamarita</span><span class="mcard-price">₦1,000</span></div><button class="mcard-btn" data-cart-key="yamarita" data-name="Yamarita" data-price="1000" onclick="addToCart('yamarita', 'Yamarita', '1000')">Add to Cart</button></div>
+      </div>
+    </div>
+
+    <!-- ── SOUPS & SAUCES ─────────────────────────── -->
+    <div class="mpanel" id="tab-soups" style="display:none">
+      <div class="menu-grid">
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Ogbono Soup</span><span class="mcard-price">₦800</span></div><button class="mcard-btn" data-cart-key="ogbono_soup" data-name="Ogbono Soup" data-price="800" onclick="addToCart('ogbono_soup', 'Ogbono Soup', '800')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Egusi Soup</span><span class="mcard-price">₦800</span></div><button class="mcard-btn" data-cart-key="egusi_soup" data-name="Egusi Soup" data-price="800" onclick="addToCart('egusi_soup', 'Egusi Soup', '800')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Efo Riro</span><span class="mcard-price">₦800</span></div><button class="mcard-btn" data-cart-key="efo_riro" data-name="Efo Riro" data-price="800" onclick="addToCart('efo_riro', 'Efo Riro', '800')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Fish Sauce</span><span class="mcard-price">₦2,000</span></div><button class="mcard-btn" data-cart-key="fish_sauce" data-name="Fish Sauce" data-price="2000" onclick="addToCart('fish_sauce', 'Fish Sauce', '2000')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Egg Sauce</span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="egg_sauce" data-name="Egg Sauce" data-price="1500" onclick="addToCart('egg_sauce', 'Egg Sauce', '1500')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Ofada Sauce</span><span class="mcard-price">₦2,000</span></div><button class="mcard-btn" data-cart-key="ofada_sauce" data-name="Ofada Sauce" data-price="2000" onclick="addToCart('ofada_sauce', 'Ofada Sauce', '2000')">Add to Cart</button></div>
+      </div>
+    </div>
+
+    <!-- ── SWALLOW ─────────────────────────────────── -->
+    <div class="mpanel" id="tab-swallow" style="display:none">
+      <div class="menu-grid">
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Semo</span><span class="mcard-price">₦400</span></div><button class="mcard-btn" data-cart-key="semo" data-name="Semo" data-price="400" onclick="addToCart('semo', 'Semo', '400')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Yellow Eba</span><span class="mcard-price">₦400</span></div><button class="mcard-btn" data-cart-key="yellow_eba" data-name="Yellow Eba" data-price="400" onclick="addToCart('yellow_eba', 'Yellow Eba', '400')">Add to Cart</button></div>
+        <div class="mcard"><div class="mcard-info"><span class="mcard-name">Poundo Yam</span><span class="mcard-price">₦600</span></div><button class="mcard-btn" data-cart-key="poundo_yam" data-name="Poundo Yam" data-price="600" onclick="addToCart('poundo_yam', 'Poundo Yam', '600')">Add to Cart</button></div>
+      </div>
+    </div>
+
+    <!-- ── PROTEIN & SIDES ────────────────────────── -->
+    <div class="mpanel" id="tab-protein" style="display:none">
+      <div style="margin-bottom:32px">
+        <div class="menu-cat-label">Proteins (Add to any dish)</div>
+        <div class="menu-grid">
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Chicken Laps</span><span class="mcard-price">₦4,000 <small style="color:rgba(255,255,255,0.45);font-size:0.75rem">/ ₦2,500 small</small></span></div><button class="mcard-btn" data-cart-key="chicken_laps" data-name="Chicken Laps" data-price="0" onclick="addToCart('chicken_laps', 'Chicken Laps', '0')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Turkey</span><span class="mcard-price">₦6,000 <small style="color:rgba(255,255,255,0.45);font-size:0.75rem">Big · ₦4k Med · ₦3k Sm</small></span></div><button class="mcard-btn" data-cart-key="turkey" data-name="Turkey" data-price="0" onclick="addToCart('turkey', 'Turkey', '0')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Snail</span><span class="mcard-price">₦2,500</span></div><button class="mcard-btn" data-cart-key="snail" data-name="Snail" data-price="2500" onclick="addToCart('snail', 'Snail', '2500')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Eja Kika</span><span class="mcard-price">₦800</span></div><button class="mcard-btn" data-cart-key="eja_kika" data-name="Eja Kika" data-price="800" onclick="addToCart('eja_kika', 'Eja Kika', '800')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Titus Fish</span><span class="mcard-price">₦2,000</span></div><button class="mcard-btn" data-cart-key="titus_fish" data-name="Titus Fish" data-price="2000" onclick="addToCart('titus_fish', 'Titus Fish', '2000')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Beef</span><span class="mcard-price">₦1,000 <small style="color:rgba(255,255,255,0.45);font-size:0.75rem">/ ₦500 small</small></span></div><button class="mcard-btn" data-cart-key="beef" data-name="Beef" data-price="0" onclick="addToCart('beef', 'Beef', '0')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">White Ponmo</span><span class="mcard-price">₦1,000 <small style="color:rgba(255,255,255,0.45);font-size:0.75rem">/ ₦500 small</small></span></div><button class="mcard-btn" data-cart-key="white_ponmo" data-name="White Ponmo" data-price="0" onclick="addToCart('white_ponmo', 'White Ponmo', '0')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Drumstick</span><span class="mcard-price">₦2,500</span></div><button class="mcard-btn" data-cart-key="drumstick" data-name="Drumstick" data-price="2500" onclick="addToCart('drumstick', 'Drumstick', '2500')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Goat Meat</span><span class="mcard-price">₦3,000</span></div><button class="mcard-btn" data-cart-key="goat_meat" data-name="Goat Meat" data-price="3000" onclick="addToCart('goat_meat', 'Goat Meat', '3000')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Assorted Meat</span><span class="mcard-price">₦500</span></div><button class="mcard-btn" data-cart-key="assorted_meat" data-name="Assorted Meat" data-price="500" onclick="addToCart('assorted_meat', 'Assorted Meat', '500')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Hake Fish</span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="hake_fish" data-name="Hake Fish" data-price="1500" onclick="addToCart('hake_fish', 'Hake Fish', '1500')">Add to Cart</button></div>
+          <div class="mcard mcard-with-thumb">
+          <div class="mcard-thumb-wrap">
+            <img src="/images/croaker-fish.jpeg" alt="Croaker Fish" class="mcard-thumb" loading="lazy"/>
+            <div class="mcard-thumb-badge"> Premium </div>
+          </div>
+          <div class="mcard-info">
+            <span class="mcard-name">Croaker Fish</span>
+          </div>
+          <div class="mcard-footer">
+            <span class="mcard-price">₦3,500</span>
+            <button class="mcard-btn" data-cart-key="croaker_fish" data-name="Croaker Fish" data-price="3500" onclick="addToCart('croaker_fish','Croaker Fish','3500')">Add to Cart</button>
+          </div>
+        </div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Gizzard</span><span class="mcard-price">₦2,000</span></div><button class="mcard-btn" data-cart-key="gizzard" data-name="Gizzard" data-price="2000" onclick="addToCart('gizzard', 'Gizzard', '2000')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Egg</span><span class="mcard-price">₦500</span></div><button class="mcard-btn" data-cart-key="egg" data-name="Egg" data-price="500" onclick="addToCart('egg', 'Egg', '500')">Add to Cart</button></div>
+        </div>
+      </div>
+      <div>
+        <div class="menu-cat-label">Sides</div>
+        <div class="menu-grid">
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Salad Mix</span><span class="mcard-price">₦1,000</span></div><button class="mcard-btn" data-cart-key="salad_mix" data-name="Salad Mix" data-price="1000" onclick="addToCart('salad_mix', 'Salad Mix', '1000')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Diced Plantain</span><span class="mcard-price">₦800</span></div><button class="mcard-btn" data-cart-key="diced_plantain" data-name="Diced Plantain" data-price="800" onclick="addToCart('diced_plantain', 'Diced Plantain', '800')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Gizdodo</span><span class="mcard-price">₦2,000</span></div><button class="mcard-btn" data-cart-key="gizdodo" data-name="Gizdodo" data-price="2000" onclick="addToCart('gizdodo', 'Gizdodo', '2000')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Fried Yam</span><span class="mcard-price">₦1,500</span></div><button class="mcard-btn" data-cart-key="fried_yam" data-name="Fried Yam" data-price="1500" onclick="addToCart('fried_yam', 'Fried Yam', '1500')">Add to Cart</button></div>
+          <div class="mcard"><div class="mcard-info"><span class="mcard-name">Smallchops</span><span class="mcard-price">Request Menu</span></div><a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8E%89%20Please%20share%20your%20Smallchops%20menu%20and%20pricing." target="_blank" rel="noopener noreferrer" class="mcard-btn">Enquire →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── A LA CARTE ─────────────────────────────── -->
+    <div class="mpanel" id="tab-alacarte" style="display:none">
+      <div style="text-align:center;margin-bottom:24px">
+        <span style="display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--charcoal);font-weight:800;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;padding:8px 20px;border-radius:50px">⭐ Premium Selection</span>
+      </div>
+      <div class="menu-grid">
+        <div class="mcard mcard-premium mcard-with-thumb">
+          <div class="mcard-thumb-wrap">
+            <img src="/images/chicken-alfredo-pasta.jpeg" alt="Chicken Alfredo Pasta" class="mcard-thumb" loading="lazy"/>
+            <div class="mcard-thumb-badge" style="background:var(--gold);color:var(--charcoal)">⭐ Premium</div>
+          </div>
+          <div class="mcard-info">
+            <span class="mcard-name">Chicken Alfredo Pasta</span>
+          </div>
+          <div class="mcard-footer">
+            <span class="mcard-price">₦15,000</span>
+            <button class="mcard-btn mcard-btn-gold" data-cart-key="chicken_alfredo_pasta" data-name="Chicken Alfredo Pasta" data-price="15000" onclick="addToCart('chicken_alfredo_pasta','Chicken Alfredo Pasta','15000')">Add to Cart</button>
+          </div>
+        </div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Classic Chicken Sandwich</span><span class="mcard-price">₦3,000</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="classic_chicken_sandwich" data-name="Classic Chicken Sandwich" data-price="3000" onclick="addToCart('classic_chicken_sandwich', 'Classic Chicken Sandwich', '3000')">Add to Cart</button></div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Chicken &amp; Chips</span><span class="mcard-price">₦8,000</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="chicken_and_chips" data-name="Chicken and Chips" data-price="8000" onclick="addToCart('chicken_and_chips', 'Chicken and Chips', '8000')">Add to Cart</button></div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Chicken Fusilli Pasta</span><span class="mcard-price">₦10,000</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="chicken_fusilli_pasta" data-name="Chicken Fusilli Pasta" data-price="10000" onclick="addToCart('chicken_fusilli_pasta', 'Chicken Fusilli Pasta', '10000')">Add to Cart</button></div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Chicken Wrap</span><span class="mcard-price">₦5,000</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="chicken_wrap" data-name="Chicken Wrap" data-price="5000" onclick="addToCart('chicken_wrap', 'Chicken Wrap', '5000')">Add to Cart</button></div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Turkey Pepper Soup</span><span class="mcard-price">₦15,000</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="turkey_pepper_soup" data-name="Turkey Pepper Soup" data-price="15000" onclick="addToCart('turkey_pepper_soup', 'Turkey Pepper Soup', '15000')">Add to Cart</button></div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Seasonal Fresh Juice</span><span class="mcard-price">₦3,500</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="seasonal_fresh_juice" data-name="Seasonal Fresh Juice" data-price="3500" onclick="addToCart('seasonal_fresh_juice', 'Seasonal Fresh Juice', '3500')">Add to Cart</button></div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Ice Coffee <small style="opacity:0.6">(Cappuccino &amp; Latte)</small></span><span class="mcard-price">₦4,000</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="ice_coffee" data-name="Ice Coffee" data-price="4000" onclick="addToCart('ice_coffee', 'Ice Coffee', '4000')">Add to Cart</button></div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Chicken Salad</span><span class="mcard-price">₦6,000</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="chicken_salad" data-name="Chicken Salad" data-price="6000" onclick="addToCart('chicken_salad', 'Chicken Salad', '6000')">Add to Cart</button></div>
+        <div class="mcard mcard-premium"><div class="mcard-info"><span class="mcard-name">Milkshake <small style="opacity:0.6">(Strawberry / Vanilla / Oreos)</small></span><span class="mcard-price">₦6,000 – ₦8,000</span></div><button class="mcard-btn mcard-btn-gold" data-cart-key="milkshake___please_specify_str" data-name="Milkshake please specify Strawberry, Vanilla or Oreos" data-price="0" onclick="addToCart('milkshake___please_specify_str', 'Milkshake please specify Strawberry, Vanilla or Oreos', '0')">Add to Cart</button></div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div style="text-align:center;margin-top:56px">
+      <p style="color:rgba(255,255,255,0.5);font-size:0.9rem;margin-bottom:20px">Can't find what you're looking for? Chat with us directly.</p>
+      <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%BD%EF%B8%8F%20I%20have%20a%20question%20about%20the%20menu." target="_blank" rel="noopener noreferrer" class="btn-gold" style="display:inline-flex">Ask About the Menu</a>
+    </div>
+
+  </div><!-- /inner -->
+  </section>
+<section class="why" id="why">
+    <div class="why-inner">
+    <div>
+      <div class="section-label" style="color:var(--gold)">Why Customers Come Back</div>
+      <h2 class="section-title" style="color:var(--white)"><span class="txt-reveal-wrap"><span class="txt-reveal">Good Food.<br/><span style="color:var(--gold)">Every Time.</span></span></span></h2><span class="gold-line"></span>
+      <p class="section-sub" style="color:rgba(255,255,255,0.65)">We cook the same way whether it's your first order or your fiftieth.</p>
+      <div class="why-features">
+        <div class="why-card stagger-child"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 2c0 0-5.5 5-5.5 10a5.5 5.5 0 0011 0c0-3-2-6-2-6s-1 2.5-3.5 2.5c0 0 1-5 0-6.5z"/></svg></div><div class="why-card-title">Always Fresh</div><p class="why-card-text">Nothing is reheated. Your order is cooked when you place it, morning, afternoon or evening.</p></div>
+        <div class="why-card stagger-child" style="transition-delay:0.1s"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 22L16 8"/><path d="M16.47 2.31A10.33 10.33 0 0022 12c0 6.5-4 9-8 9a9 9 0 01-9-9c0-8 9-14 9-14z"/></svg></div><div class="why-card-title">Good Ingredients</div><p class="why-card-text">Fresh vegetables, quality proteins, real spices. Sourced daily. You taste the difference.</p></div>
+        <div class="why-card stagger-child" style="transition-delay:0.2s"><div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 9H4a2 2 0 000 4h2"/><path d="M18 9h2a2 2 0 010 4h-2"/><path d="M4 7h16"/><rect x="6" y="2" width="12" height="13" rx="2"/><path d="M8 21l1-5h6l1 5"/><path d="M6 21h12"/></svg></div><div class="why-card-title">Clean Kitchen</div><p class="why-card-text">Every surface, every pot, every plate. We keep it clean because the food deserves it.</p></div>
+        
+      </div>
+    </div>
+    <div class="why-visual reveal-r">
+      <img loading="lazy" src="/images/party-jollof-at-tinu-s-kitchen.jpeg" alt="Party Jollof at Tinu's Kitchen" class="why-img-main"/>
+      <div class="why-badge">
+        <div class="num">6,500+</div>
+        <div class="lbl">Served & Smiling</div>
+      </div>
+    </div>
+  </div>
+  </section>
+<section class="testimonials" id="reviews">
+    <div class="testi-header reveal">
+    <h2 class="section-title" style="color:var(--white)"><span class="txt-reveal-wrap"><span class="txt-reveal">What People <span style="color:var(--gold)">Say</span></span></span></h2><span class="gold-line"></span>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The meat was soft and well seasoned. Rice was tasty, not too spicy. Portion size was good for the price. 9/10 from me.</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-author"><div class="testi-avatar">FK</div><div><div class="testi-name">Fatimah K.</div><div class="testi-role">Iba, Lagos</div></div></div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:0.12s">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Got it in like 5 mins. Fastest delivery I've ever gotten. And the food was really good too 😄</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-author"><div class="testi-avatar">TO</div><div><div class="testi-name">Tobi O.</div><div class="testi-role">Ojo, Lagos</div></div></div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:0.24s">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Una sabi cook o 👏 Had to slide into the DMs to say it because it was that good. Ordered 3 different meals and not one disappointed me.</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-author"><div class="testi-avatar">CH</div><div><div class="testi-name">Chisom H.</div><div class="testi-role">Lekki, Lagos</div></div></div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:0.36s">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Ordered the sandwich and it was actually so good. Ordered it again two days later. The sauce is what does it for me.</p>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-author"><div class="testi-avatar">AD</div><div><div class="testi-name">Adedolapo</div><div class="testi-role">Food Lover · Ebute Metta, Lagos</div></div></div>
+    </div>
+  </div>
+  </section>
+<section id="reservation">
+  <div class="res-photo-panel">
+    <div class="res-photo-panel-img" style="background-image:url('/images/hero-1.jpeg')"></div>
+    <div class="res-photo-panel-overlay"></div>
+    <div class="res-photo-panel-quote">
+      <div class="res-photo-panel-quote-text">Celebrate your best moments<br/>at Tinu's Kitchen Bistro.</div>
+      <div class="res-photo-panel-quote-sub">Iba, Lagos · Private Dining</div>
+    </div>
+  </div>
+  <div class="res-form-panel">
+    <div class="res-inner">
+
+    <div class="res-header reveal">
+      <div class="res-eyebrow">Private Dining</div>
+      <h2 class="res-title">Reserve Your <span>Private Space</span></h2>
+      <p class="res-subtitle">Birthdays, intimate dinners, family gatherings, corporate events. Book your space and we'll take care of the rest.</p>
+    </div>
+
+    <!-- Occasion selector -->
+    <div class="res-section-label">Select Your Occasion</div>
+    <div class="res-occasions reveal">
+      <div class="res-occasion-card" data-occasion="Birthday Celebration" onclick="selectOccasion(this)">
+        <span class="res-occasion-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <div class="res-occasion-label">Birthday Celebration</div>
+      </div>
+      <div class="res-occasion-card" data-occasion="Intimate Dinner / Date Night" onclick="selectOccasion(this)">
+        <span class="res-occasion-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M8 22h8M7 10h10M12 22V10M17 3L7 3l2.5 7h5L17 3z"/></svg></span>
+        <div class="res-occasion-label">Intimate Dinner / Date Night</div>
+      </div>
+      <div class="res-occasion-card" data-occasion="Baby Shower" onclick="selectOccasion(this)">
+        <span class="res-occasion-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M9 12h.01M15 12h.01M10 16s1 1 2 1 2-1 2-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+        <div class="res-occasion-label">Baby Shower</div>
+      </div>
+      <div class="res-occasion-card" data-occasion="Family Gathering" onclick="selectOccasion(this)">
+        <span class="res-occasion-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
+        <div class="res-occasion-label">Family Gathering</div>
+      </div>
+      <div class="res-occasion-card" data-occasion="Corporate Lunch / Dinner" onclick="selectOccasion(this)">
+        <span class="res-occasion-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span>
+        <div class="res-occasion-label">Corporate Lunch / Dinner</div>
+      </div>
+      <div class="res-occasion-card" data-occasion="Private Space (No Specific Occasion)" onclick="selectOccasion(this)">
+        <span class="res-occasion-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
+        <div class="res-occasion-label">Just a Private Space</div>
+      </div>
+    </div>
+
+    <!-- Details form -->
+    <div class="res-form-card reveal">
+      <div class="res-form-grid">
+
+        <div class="res-form-group">
+          <label class="res-form-label">Full Name</label>
+          <input class="res-form-input" id="resName" type="text" placeholder="e.g. Adaeze Okonkwo" autocomplete="off"/>
+        </div>
+
+        <div class="res-form-group">
+          <label class="res-form-label">Phone Number</label>
+          <input class="res-form-input" id="resPhone" type="tel" placeholder="e.g. 08012345678" autocomplete="off"/>
+        </div>
+
+        <div class="res-form-group">
+          <label class="res-form-label">Preferred Date</label>
+          <input class="res-form-input" id="resDate" type="date"/>
+        </div>
+
+        <div class="res-form-group">
+          <label class="res-form-label">Preferred Time</label>
+          <select class="res-form-select" id="resTime">
+            <option value="" disabled selected>Select a time slot</option>
+            <option>10:00 AM – 12:00 PM</option>
+            <option>12:00 PM – 2:00 PM</option>
+            <option>2:00 PM – 4:00 PM</option>
+            <option>4:00 PM – 6:00 PM</option>
+            <option>6:00 PM – 8:00 PM</option>
+          </select>
+        </div>
+
+        <div class="res-form-group">
+          <label class="res-form-label">Number of Guests</label>
+          <div class="res-guest-picker">
+            <button class="res-guest-btn" onclick="adjustGuests(-1)" type="button">−</button>
+            <span class="res-guest-count" id="resGuestCount">2</span>
+            <button class="res-guest-btn" onclick="adjustGuests(1)" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="res-form-group">
+          <label class="res-form-label">Budget Range</label>
+          <select class="res-form-select" id="resBudget">
+            <option value="" disabled selected>Estimated budget</option>
+            <option>₦20,000 – ₦50,000</option>
+            <option>₦50,000 – ₦100,000</option>
+            <option>₦100,000 – ₦200,000</option>
+            <option>₦200,000+</option>
+            <option>Flexible I'd like a quote</option>
+          </select>
+        </div>
+
+        <div class="res-form-group full">
+          <label class="res-form-label">What would you like included?</label>
+          <div class="res-includes">
+            <div class="res-include-chip selected" data-include="Private dining space" onclick="toggleInclude(this)">
+              <span class="chip-check"></span> Private Dining Space
+            </div>
+            <div class="res-include-chip" data-include="Food & drinks from our menu" onclick="toggleInclude(this)">
+              <span class="chip-check"></span> Food & Drinks from Menu
+            </div>
+            <div class="res-include-chip" data-include="Custom catering package" onclick="toggleInclude(this)">
+              <span class="chip-check"></span> Custom Catering Package
+            </div>
+            <div class="res-include-chip" data-include="Decoration setup" onclick="toggleInclude(this)">
+              <span class="chip-check"></span> Decoration Setup
+            </div>
+            <div class="res-include-chip" data-include="Cake arrangement" onclick="toggleInclude(this)">
+              <span class="chip-check"></span> Cake Arrangement
+            </div>
+          </div>
+        </div>
+
+        <div class="res-form-group full">
+          <label class="res-form-label">Anything else we should know?</label>
+          <textarea class="res-form-textarea" id="resNote" placeholder="Special requests, dietary needs, theme, surprise details… tell us everything ✨"></textarea>
+        </div>
+
+      </div>
+
+      <div class="res-submit-row">
+        <button class="res-submit-btn" onclick="submitReservation()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send Reservation Request
+        </button>
+        <p class="res-submit-note">We'll reach out on WhatsApp within a few hours to<br/>confirm your booking and sort the details together.</p>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</section>
+<section class="about" id="about">
+    <div class="about-inner">
+    <div class="about-imgs reveal-l">
+      <img loading="lazy" src="/images/party-jollof-by-tinu.jpeg" alt="Party Jollof by Tinu" class="about-img-back"/>
+      <img loading="lazy" src="/images/spaghetti-by-tinu-s-kitchen.jpeg" alt="Spaghetti by Tinu's Kitchen" class="about-img-front"/>
+      
+    </div>
+    <div class="reveal-r">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title"><span class="txt-reveal-wrap"><span class="txt-reveal"><span class="txt-reveal-wrap"><span class="txt-reveal">Started in Iba.<br/><span>Still Here.</span></span></span></span></span></h2><span class="gold-line"></span><span class="gold-line"></span>
+      <p class="section-sub">Tinu's Kitchen Bistro started at Ipaye Bus Stop, Iba — a cloud kitchen run by someone who genuinely loves to cook. Not a franchise. Not an investor's idea. Just Tinu, good ingredients, and a belief that the people of Iba deserved better food.</p>
+      <blockquote class="about-quote">"Every plate I serve carries my love for cooking, my passion and the flavours that made me who I am as a chef."<br/><br/><strong>Tinu, Founder</strong></blockquote>
+      <p class="section-sub">Today it's Jollof, pasta, sandwiches, milkshakes, catering and private dining. The kitchen has grown. The food is still made the same way it always was.</p>
+      <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20place%20an%20order.%20What%20is%20available%20today%3F" target="_blank" rel="noopener noreferrer" class="about-cta">Order Now</a>
+    </div>
+  </div>
+  </section>
+<section class="catering" id="catering" style="--catering-bg:url('/images/catering-bg.jpeg')">
+    <div class="catering-inner">
+    <div class="section-label">Catering</div>
+    <h2 class="catering-title">Feeding a <span>Crowd?</span></h2>
+    <p class="catering-sub">Birthdays, corporate lunches, campus events, celebrations. We handle the food so you can actually enjoy the day. Minimum 50 packs. Delivered to your venue.</p>
+    <div class="catering-features">
+      <div class="catering-feat">From 50 packs</div>
+      <div class="catering-feat">Events &amp; corporate</div>
+      <div class="catering-feat">Lagos-wide delivery</div>
+      <div class="catering-feat">Custom menus</div>
+      <div class="catering-feat">Packed &amp; labelled</div>
+    </div>
+    <div class="catering-btns">
+      <a href="https://wa.me/2348162918036?text=Good%20day%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8E%89%20I%20need%20full%20event%20catering%20services.%20Please%20share%20your%20catering%20packages%2C%20pricing%20and%20what%20is%20covered.%20Event%20details%3A%20%5BAdd%20your%20date%2C%20guest%20count%20%26%20location%5D" target="_blank" rel="noopener noreferrer" class="btn-gold">Get a Catering Quote</a>
+      <a href="tel:08162918036" class="btn-white"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> Call to Discuss</a>
+    </div>
+  </div>
+  </section>
+<section class="gallery" id="gallery">
+  <div class="gallery-header reveal">
+    <div class="section-label">Food Gallery</div>
+    <h2 class="section-title"><span class="txt-reveal-wrap"><span class="txt-reveal">The Food</span></span></h2><span class="gold-line"></span>
+  </div>
+  <div class="gallery-grid">
+      <div class="gallery-thumb pop-child" onclick="openLightbox(0)" tabindex="0" aria-label="View Jollof, Fried Rice & BBQ Chicken">
+        <img src="/images/bulk-catering-jollof--fried-rice-and-bbq.jpeg" alt="Bulk catering Jollof, Fried Rice and BBQ Chicken trays" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Jollof, Fried Rice & BBQ Chicken</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(1)" tabindex="0" aria-label="View Signature Dish">
+        <img src="/images/tinu-s-kitchen-signature-dish.jpeg" alt="Tinu's Kitchen signature dish" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Signature Dish</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(2)" tabindex="0" aria-label="View Oreo Milkshake">
+        <img src="/images/oreo-milkshake.jpeg" alt="Oreo Milkshake" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Oreo Milkshake</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(3)" tabindex="0" aria-label="View Stir-Fried Pasta">
+        <img src="/images/stir-fried-pasta-with-sausage-and-vegeta.jpeg" alt="Stir-fried pasta with sausage and vegetables" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Stir-Fried Pasta</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(4)" tabindex="0" aria-label="View Small Chops Platter">
+        <img src="/images/small-chops-platter-puff-puff--spring-ro.jpeg" alt="Small chops platter puff puff, spring rolls, spicy chicken" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Small Chops Platter</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(5)" tabindex="0" aria-label="View Jollof & Turkey">
+        <img src="/images/jollof-rice-with-turkey.jpeg" alt="Jollof rice with turkey" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Jollof & Turkey</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(6)" tabindex="0" aria-label="View Chicken Salad">
+        <img src="/images/chicken-salad.jpeg" alt="Chicken salad" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Chicken Salad</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(7)" tabindex="0" aria-label="View Party Spread">
+        <img src="/images/full-party-food-spread-with-birthday-cak.jpeg" alt="Full party food spread with birthday cake" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Party Spread</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(8)" tabindex="0" aria-label="View Grilled Fish & Rice">
+        <img src="/images/grilled-fish-with-rice-fine-dining-style.jpeg" alt="Grilled fish with rice fine dining style" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Grilled Fish & Rice</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(9)" tabindex="0" aria-label="View Pepper Soup & Rice">
+        <img src="/images/pepper-soup-with-rice.jpeg" alt="Pepper soup with rice" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Pepper Soup & Rice</span>
+        </div>
+      </div>
+      <div class="gallery-thumb pop-child" onclick="openLightbox(10)" tabindex="0" aria-label="View Breakfast Board">
+        <img src="/images/breakfast-board-with-sandwiches--waffles.jpeg" alt="Breakfast board with sandwiches, waffles and sausages" loading="lazy"/>
+        <div class="gallery-thumb-overlay">
+          <span class="gallery-thumb-label">Breakfast Board</span>
+        </div>
+      </div>
+  </div>
+</section>
+<section style="padding:56px 5%;background:var(--charcoal);border-bottom:2px solid rgba(255,255,255,0.06);" id="delivery-info">
+    <div style="max-width:900px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:36px;">
+        <h2 class="section-title" style="color:var(--white);"><span class="txt-reveal-wrap"><span class="txt-reveal">Getting Food <span style="color:var(--gold);">to You</span></span></span></h2><span class="gold-line"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;">
+        <div class="reveal" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px 24px;text-align:center;">
+          <div style="margin-bottom:14px;display:flex;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 17h2M7 17h2M19 17h2M15 17l-3-9h-4l-2 5H4a2 2 0 000 4h16a2 2 0 000-4h-5z"/></svg></svg></div>
+          <div style="font-weight:700;font-size:0.95rem;color:var(--white);margin-bottom:8px;letter-spacing:0.3px;">Delivery</div>
+          <div style="color:rgba(255,255,255,0.55);font-size:0.85rem;line-height:1.7;">Iba, Ojo and surrounding areas. WhatsApp us to confirm your location before ordering.</div>
+        </div>
+        <div class="reveal" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px 24px;text-align:center;">
+          <div style="margin-bottom:14px;display:flex;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div style="font-weight:700;font-size:0.95rem;color:var(--white);margin-bottom:8px;letter-spacing:0.3px;">Walk-In Pickup</div>
+          <div style="color:rgba(255,255,255,0.55);font-size:0.85rem;line-height:1.7;">Order ahead, come to Ipaye Bus Stop, Lasu Road, Iba. Your food will be ready.</div>
+        </div>
+        <div class="reveal" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px 24px;text-align:center;">
+          <div style="margin-bottom:14px;display:flex;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div style="font-weight:700;font-size:0.95rem;color:var(--white);margin-bottom:8px;letter-spacing:0.3px;">Delivery Time</div>
+          <div style="color:rgba(255,255,255,0.55);font-size:0.85rem;line-height:1.7;">Most orders arrive within 20 to 45 minutes depending on where you are.</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:32px;">
+        <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20I%27d%20like%20to%20confirm%20delivery%20to%20my%20location." target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 28px;border-radius:50px;font-weight:700;font-size:0.9rem;text-decoration:none;transition:background 0.25s;" onmouseover="this.style.background='#1aab53'" onmouseout="this.style.background='#25D366'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Check Delivery to My Area
+        </a>
+      </div>
+    </div>
+  </section>
+<section style="padding:80px 5%;background:var(--cream);" id="leave-review">
+    <div style="max-width:680px;margin:0 auto;text-align:center;">
+          <div class="section-label">Share Your Experience</div>
+          <h2 class="section-title">Leave Us a <span>Review</span></h2>
+          <p class="section-sub" style="margin:14px auto 40px;text-align:center;">Had a meal at Tinu's Kitchen Bistro? We'd love to hear from you!</p>
+          <div style="background:var(--white);border-radius:24px;padding:36px 32px;box-shadow:0 4px 30px rgba(0,0,0,0.08);text-align:left;">
+            <div style="margin-bottom:20px;"><label style="display:block;font-weight:700;color:var(--charcoal);font-size:0.9rem;margin-bottom:8px;">Your Name</label><input id="reviewName" type="text" placeholder="e.g. Adaeze" style="width:100%;padding:14px 18px;border:1.5px solid #e0d5c5;border-radius:12px;font-family:'Outfit',sans-serif;font-size:16px;color:var(--charcoal);outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#D4A017'" onblur="this.style.borderColor='#e0d5c5'"/></div>
+            <div style="margin-bottom:20px;"><label style="display:block;font-weight:700;color:var(--charcoal);font-size:0.9rem;margin-bottom:8px;">What did you order?</label><input id="reviewDish" type="text" placeholder="e.g. Jollof Rice + Turkey" style="width:100%;padding:14px 18px;border:1.5px solid #e0d5c5;border-radius:12px;font-family:'Outfit',sans-serif;font-size:16px;color:var(--charcoal);outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#D4A017'" onblur="this.style.borderColor='#e0d5c5'"/></div>
+            <div style="margin-bottom:20px;"><label style="display:block;font-weight:700;color:var(--charcoal);font-size:0.9rem;margin-bottom:10px;">Your Rating</label><div id="starRating" style="display:flex;gap:8px;font-size:2rem;cursor:pointer;"><span onclick="setReviewStar(1)" style="color:#ccc;">☆</span><span onclick="setReviewStar(2)" style="color:#ccc;">☆</span><span onclick="setReviewStar(3)" style="color:#ccc;">☆</span><span onclick="setReviewStar(4)" style="color:#ccc;">☆</span><span onclick="setReviewStar(5)" style="color:#ccc;">☆</span></div></div>
+            <div style="margin-bottom:28px;"><label style="display:block;font-weight:700;color:var(--charcoal);font-size:0.9rem;margin-bottom:8px;">Your Review</label><textarea id="reviewText" placeholder="Tell us about your experience the food, delivery, packaging, everything!" rows="4" style="width:100%;padding:14px 18px;border:1.5px solid #e0d5c5;border-radius:12px;font-family:'Outfit',sans-serif;font-size:16px;color:var(--charcoal);outline:none;resize:vertical;box-sizing:border-box;" onfocus="this.style.borderColor='#D4A017'" onblur="this.style.borderColor='#e0d5c5'"></textarea></div>
+            <button onclick="submitReview()" style="display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:#25D366;color:#fff;border:none;cursor:pointer;padding:18px 24px;border-radius:14px;font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:800;transition:background 0.3s;" onmouseover="this.style.background='#1aab53'" onmouseout="this.style.background='#25D366'"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Send My Review on WhatsApp</button>
+          </div>
+        </div>
+        
+  </section>
+<section style="padding:0;background:var(--charcoal);min-height:calc(100vh - 68px);" id="location">
+    <div class="location-inner">
+    <div class="location-info reveal-l">
+      <div class="section-label">Visit Us</div>
+      <h2 class="section-title"><span class="txt-reveal-wrap"><span class="txt-reveal"><span class="txt-reveal-wrap"><span class="txt-reveal"><span class="txt-reveal-wrap"><span class="txt-reveal">Come Eat With <span>Us</span></span></span></span></span></span></span></h2><span class="gold-line"></span><span class="gold-line"></span><span class="gold-line"></span>
+      <p class="section-sub">Ipaye Bus Stop, Lasu Road, Iba. Open every day.</p>
+      <div class="location-card">
+        <div class="location-item">
+          <span class="location-icon"><a href="https://www.google.com/maps/search/Tinus+Kitchen+Bistro+Ipaye+Bus+Stop+Lasu+Road+Iba+Ojo+Lagos" target="_blank" rel="noopener noreferrer" title="Open in Google Maps" style="text-decoration:none;">📍</a></span>
+          <div class="location-item-text">
+            <strong>Address</strong>
+            <span>Ipaye Bus Stop, Lasu Road, Iba, Ojo, Lagos State, Nigeria</span>
+          </div>
+        </div>
+        <div class="location-item">
+          <span class="location-icon">📞</span>
+          <div class="location-item-text">
+            <strong>Phone / WhatsApp</strong>
+            <span><a href="tel:08162918036"><a href="tel:+2348162918036" style="color:inherit;text-decoration:none;">08162918036</a></a> &nbsp;·&nbsp; <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20place%20an%20order.%20What%20is%20available%20today%3F" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a></span>
+          </div>
+        </div>
+        <div class="location-item">
+          <span class="location-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <div class="location-item-text">
+            <strong>Opening Hours</strong>
+            <span>Monday – Sunday &nbsp;·&nbsp; 9:00 AM – 8:00 PM</span>
+          </div>
+        </div>
+        <div class="location-item">
+          <span class="location-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+          <div class="location-item-text">
+            <strong>Instagram</strong>
+            <span><a href="https://www.instagram.com/tinus_kitchen_bistro1?igsh=MXhjMW5zMTVvaml6Yg==" target="_blank" rel="noopener noreferrer"><a href="https://instagram.com/tinus_kitchen_bistro1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">@tinus_kitchen_bistro1</a></a></span>
+          </div>
+      <div style="margin-top:28px;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,0.1);">
+        <iframe
+          title="Tinu's Kitchen Bistro Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.0!2d3.1662!3d6.4698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIpaye+Bus+Stop%2C+Lasu+Road%2C+Iba%2C+Ojo%2C+Lagos!5e0!3m2!1sen!2sng!4v1"
+          width="100%"
+          height="220"
+          style="border:0;display:block;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+        </div>
+        <div style="padding-top:14px">
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </section>
+<section class="final-cta" id="order">
+    <div class="final-inner">
+    
+    <h2 class="final-title reveal">Hungry? <span>Let's Fix That.</span></h2>
+    <p class="final-sub reveal">Fresh, hot and straight from Iba. WhatsApp us your order and we'll handle the rest.</p>
+    <div class="final-btns reveal">
+      <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20place%20an%20order.%20What%20is%20available%20today%3F" target="_blank" rel="noopener noreferrer" class="btn-wa-big">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Order Now on WhatsApp
+      </a>
+      
+    </div>
+  </div>
+  </section>
+
+<div class="float-call">
+  <a href="tel:08162918036" title="Call Tinu's Kitchen">📞</a>
+</div>
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- ===== CART FAB ===== -->
+<div class="cart-fab" id="cartFab">
+  <button class="cart-fab-btn" onclick="openCart()">
+    🛒 <span id="cartFabLabel">My Order</span>
+    <span class="cart-count-badge" id="cartBadge">0</span>
+  </button>
+</div>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-handle" onclick="closeCart()"></div>
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-title">🛒 Your Order</div>
+    <button class="cart-clear-btn" onclick="clearCart()">Clear All</button>
+  </div>
+  <div class="cart-items-list" id="cartItemsList">
+    <div class="cart-empty-state">
+      <div class="empty-icon">🍽️</div>
+      <p>Your order is empty.<br/>Browse the menu and tap <strong style="color:var(--gold)">Add to Cart</strong> on any dish.</p>
+    </div>
+  </div>
+  <div class="cart-drawer-footer">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Order Total</span>
+      <span class="cart-total-amount" id="cartTotal">₦0</span>
+    </div>
+    <button class="cart-send-btn" onclick="sendOrderOnWhatsApp()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Send Order on WhatsApp
+    </button>
+  </div>
+</div>
+
+
+<!-- ===== OPTION SELECTOR MODAL ===== -->
+<div class="opt-overlay" id="optOverlay" onclick="closeOptModal()"></div>
+<div class="opt-modal" id="optModal">
+  <div class="opt-handle" onclick="closeOptModal()"></div>
+  <div class="opt-header">
+    <div class="opt-dish-name" id="optDishName">Item Name</div>
+    <div class="opt-subtitle">Choose your preferred option &amp; quantity</div>
+  </div>
+  <div class="opt-options-wrap">
+    <div class="opt-section-label">Select Option</div>
+    <div class="opt-options" id="optOptionsList"></div>
+    <div class="opt-section-label">Quantity</div>
+    <div class="opt-qty-wrap">
+      <span class="opt-qty-label">How many?</span>
+      <div class="opt-qty-controls">
+        <button class="opt-qty-btn" id="optQtyMinus" onclick="changeOptQty(-1)">−</button>
+        <span class="opt-qty-num" id="optQtyNum">1</span>
+        <button class="opt-qty-btn" id="optQtyPlus" onclick="changeOptQty(1)">+</button>
+      </div>
+    </div>
+  </div>
+  <div class="opt-line-total">
+    <span class="opt-line-total-label">Total for this item</span>
+    <span class="opt-line-total-price" id="optLineTotal">₦0</span>
+  </div>
+  <button class="opt-add-btn" id="optAddBtn" onclick="confirmOptAdd()" disabled>
+    🛒 Choose an option above
+  </button>
+</div>
+
+<!-- CONFETTI -->
+<canvas id="confettiCanvas"></canvas>
+<div class="order-success-toast" id="orderSuccessToast">
+  <span class="success-emoji">🎉</span>
+  <div class="success-title">Order Sent to Tinu!</div>
+  <div class="success-sub">Your order is on its way to Tinu. Expect a confirmation shortly.</div>
+</div>
+<!-- STICKY MOBILE ORDER BAR -->
+<div class="sticky-order-bar" id="stickyOrderBar">
+  <div class="sticky-order-bar-text">
+    <strong>Hungry? 🍛</strong>
+    Order fresh, delivered to you
+  </div>
+  <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20place%20an%20order.%20What%20is%20available%20today%3F" target="_blank" rel="noopener noreferrer" class="sticky-order-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order Now
+  </a>
+</div>
+
+<!-- FLOATING REVIEW ICON -->
+<div class="review-float-outer">
+  <!-- FLOATING REVIEW ICON -->
+  <div style="position:relative;display:flex;flex-direction:column;align-items:flex-end;">
+    <div class="review-float-popup" id="reviewFloatPopup">
+      <button class="review-float-popup-close" onclick="closeReviewFloat()" title="Close">✕</button>
+      <div class="review-popup-title">⭐ Leave a Review</div>
+      <div class="review-popup-sub">Quick 30-second review means the world to us!</div>
+      <input class="review-popup-input" id="rfName" type="text" placeholder="Your name" autocomplete="off"/>
+      <input class="review-popup-input" id="rfDish" type="text" placeholder="What did you order? (optional)" autocomplete="off"/>
+      <div class="review-popup-stars" id="rfStars">
+        <span onclick="setRfStar(1)">☆</span>
+        <span onclick="setRfStar(2)">☆</span>
+        <span onclick="setRfStar(3)">☆</span>
+        <span onclick="setRfStar(4)">☆</span>
+        <span onclick="setRfStar(5)">☆</span>
+      </div>
+      <textarea class="review-popup-textarea" id="rfText" placeholder="How was your experience? 😋"></textarea>
+      <button class="review-popup-send" onclick="submitFloatReview()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send Review on WhatsApp
+      </button>
+    </div>
+    <button class="review-float-btn" onclick="toggleReviewFloat()" title="Leave a review">
+      ⭐
+      <span class="review-float-tooltip">Leave a Review</span>
+    </button>
+  </div>
+</div>
+<!-- WHATSAPP CHAT BUBBLE -->
+<div class="wa-chat-bubble" id="waChatBubble">
+  <div class="wa-chat-popup" id="waChatPopup">
+    <button class="wa-chat-popup-close" onclick="closeWaChat()" title="Close">✕</button>
+    <div class="wa-chat-header">
+      <div class="wa-chat-avatar">🍛</div>
+      <div>
+        <div class="wa-chat-name">Tinu's Kitchen Bistro</div>
+        <div class="wa-chat-status"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" fill="#25D366" stroke="none"/></svg> Online now</div>
+      </div>
+    </div>
+    <div class="wa-chat-msg">Hi Sunshine — Ready to Order?<br/>We can't wait to make your day tastier.</div>
+    <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20place%20an%20order.%20What%20is%20available%20today%3F" target="_blank" rel="noopener noreferrer" class="wa-chat-cta" onclick="closeWaChat()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Start Chatting 🍽️
+    </a>
+  </div>
+    
+  <button class="wa-chat-btn" id="waChatToggle" onclick="toggleWaChat()" title="Chat with us on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="wa-notif-dot">1</span>
+  </button>
+</div>
+
+
+
+
+
+
+
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-wrap">
+        <img loading="lazy" src="/images/tinu-s-kitchen-bistro-logo.jpeg" alt="Tinu's Kitchen Bistro Logo"/>
+        
+      </div>
+      <p class="footer-desc">Fresh Nigerian food from Iba, Lagos. Open every day, 9 AM to 8 PM.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/tinus_kitchen_bistro1?igsh=MXhjMW5zMTVvaml6Yg==" target="_blank" rel="noopener noreferrer" class="social-btn" title="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20place%20an%20order.%20What%20is%20available%20today%3F" target="_blank" rel="noopener noreferrer" class="social-btn" title="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <a href="tel:08162918036" class="social-btn" title="Call Us">📞</a>
+        <a href="https://www.tiktok.com/@tinukitchenbistro1?_r=1&_t=ZS-96FUHdGH5wF" target="_blank" rel="noopener noreferrer" class="social-btn" title="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#meals">Our Menu</a></li>
+        <li><a href="#gallery">Food Gallery</a></li>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#catering">Catering</a></li>
+        <li><a href="#location">Find Us</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Order Direct</h4>
+      <ul>
+        <li><a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20order%20the%20Jollof%20Rice%20Combo%20%E2%82%A65%2C000.%20Please%20let%20me%20know%20the%20available%20proteins%20(chicken%2C%20beef%2C%20assorted)%20and%20confirm%20availability.%20I%27m%20ready%20to%20order%20now!" target="_blank" rel="noopener noreferrer">Jollof Rice Combo</a></li>
+        <li><a href="https://wa.me/2348162918036?text=Hello%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9D%20I%20want%20to%20order%20the%20Spaghetti%20Special%20with%20Plantain.%20Is%20it%20available%20now%3F%20Please%20confirm%20the%20price%20and%20how%20long%20delivery%20will%20take.%20Thanks!" target="_blank" rel="noopener noreferrer">Spaghetti Special</a></li>
+        <li><a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%93%A6%20I%27m%20interested%20in%20a%20Bulk%20Order%20(Party%20Packs).%20Kindly%20share%20your%20bulk%20catering%20menu%2C%20pricing%20per%20pack%2C%20and%20minimum%20quantity.%20I%27m%20planning%20an%20event!" target="_blank" rel="noopener noreferrer">Chicken Sandwich Combo</a></li>
+        <li><a href="https://wa.me/2348162918036?text=Good%20day%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8E%89%20I%20need%20full%20event%20catering%20services.%20Please%20share%20your%20catering%20packages%2C%20pricing%20and%20what%20is%20covered.%20Event%20details%3A%20%5BAdd%20your%20date%2C%20guest%20count%20%26%20location%5D" target="_blank" rel="noopener noreferrer">Event Catering</a></li>
+        <li><a href="#reservation" onclick="navTo('reservation')">Reserve a Space</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Find Us</h4>
+      <div class="footer-contact-item"><span class="ico">📍</span><span>Ipaye Bus Stop, Lasu Road, Iba, Ojo, Lagos State</span></div>
+      <div class="footer-contact-item"><span class="ico">📞</span><a href="tel:08162918036"><a href="tel:+2348162918036" style="color:inherit;text-decoration:none;">08162918036</a></a></div>
+      <div class="footer-contact-item"><span class="ico">💬</span><a href="https://wa.me/2348162918036?text=Hi%20Tinu%27s%20Kitchen%20Bistro!%20%F0%9F%8D%9B%20I%27d%20like%20to%20place%20an%20order.%20What%20is%20available%20today%3F" target="_blank" rel="noopener noreferrer">WhatsApp: 08162918036</a></div>
+      <div class="footer-contact-item"><span class="ico">📸</span><a href="https://www.instagram.com/tinus_kitchen_bistro1?igsh=MXhjMW5zMTVvaml6Yg==" target="_blank" rel="noopener noreferrer">@tinus_kitchen_bistro1</a></div>
+      <div class="footer-contact-item"><span class="ico">🎵</span><a href="https://www.tiktok.com/@tinukitchenbistro1?_r=1&_t=ZS-96FUHdGH5wF" target="_blank" rel="noopener noreferrer"><a href="https://instagram.com/tinukitchenbistro1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">@tinukitchenbistro1</a></a></div>
+      <div class="footer-contact-item"><span class="ico">🕐</span><span>Mon – Sun · 9:00 AM – 8:00 PM</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span id="copyrightYear">2025</span> Tinu's Kitchen Bistro · Ipaye Bus Stop, Lasu Road, Iba, Ojo, Lagos. . Made with <span></span> in Lagos.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:12px;font-size:0.75rem;">
+        <a href="/privacy-policy.html" style="color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4A017'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Privacy Policy</a>
+        <a href="/terms-and-conditions.html" style="color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4A017'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Terms &amp; Conditions</a>
+        <a href="#" onclick="window.tkbOpenCookiePrefs&&window.tkbOpenCookiePrefs();return false;" style="color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4A017'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Cookie Preferences</a>
+      </div>
+    <p>Follow us: <a href="https://www.instagram.com/tinus_kitchen_bistro1?igsh=MXhjMW5zMTVvaml6Yg==" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.35);text-decoration:none"><span>@tinus_kitchen_bistro1</span></a></p>
+  </div>
+</footer>
+
+<!-- 404 PAGE -->
+<div class="page-404" id="page404">
+  <div class="page-404-num">404</div>
+  <div class="page-404-title">Page Not Found</div>
+  <p class="page-404-sub">This page doesn't exist. But the Jollof does — head back and order.</p>
+  <div class="page-404-actions">
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="page-404-btn page-404-btn-primary">Back to Home</a>
+    <a href="#menu" onclick="navTo('menu')" class="page-404-btn page-404-btn-secondary">View Menu</a>
+  </div>
+</div>
+
+<!-- COOKIE CONSENT BANNER -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent">
+  <div class="cookie-banner-text">
+    We use a cookie to remember your preferences. No tracking or advertising cookies. 
+    <a href="/privacy-policy.html" rel="noopener">Privacy Policy</a>
+  </div>
+  <div class="cookie-banner-btns">
+    <button class="cookie-btn-accept" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn-decline" onclick="declineCookies()">Decline</button>
+  </div>
+</div>
+  <script src="/js/script.js"></script>
+</body>
