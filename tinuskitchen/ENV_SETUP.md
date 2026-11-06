@@ -9,7 +9,7 @@ In your Netlify Dashboard:
 | `PAYSTACK_SECRET_KEY` | `sk_live_...` or `sk_test_...` | Paystack secret key (never exposed to browser) |
 | `SUPABASE_URL` | `https://xxxx.supabase.co` | Your Supabase project URL |
 | `SUPABASE_SERVICE_ROLE_KEY` | `eyJ...` | Supabase service role key (Project Settings → API) |
-| `ADMIN_PASSWORD` | `tinus2026` | Passkey used to log into `/admin.html` (default: `tinus2026`) |
+| `ADMIN_PASSWORD` | `your_custom_password` | Passkey used to log into `/admin.html` |
 
 For local testing with `npx netlify dev`:
 Copy `.env.example` in the project root to `.env` and fill in your keys.

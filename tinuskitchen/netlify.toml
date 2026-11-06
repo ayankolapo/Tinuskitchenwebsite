@@ -4,6 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  SECRETS_SCAN_OMIT_KEYS = "PAYSTACK_PUBLIC_KEY"
+  SECRETS_SCAN_OMIT_PATHS = ".env.example,tinuskitchen/ENV_SETUP.md"
 
 [[headers]]
   for = "/*"

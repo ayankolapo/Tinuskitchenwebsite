@@ -2743,7 +2743,7 @@
       } catch (e) { }
 
       // Persist to serverless function
-      const token = getAdminAuthToken() || 'tinus2026';
+      const token = getAdminAuthToken();
       try {
         const res = await fetch('/.netlify/functions/admin-orders', {
           method: 'PATCH',
@@ -2841,16 +2841,13 @@
         });
         if (res.ok) {
           isAuthenticated = true;
-        } else if (res.status === 401) {
-          isAuthenticated = false;
         } else {
-          // If 500 (e.g. Supabase keys missing in dev), fall back to default check
-          if (pass === 'tinus2026' || pass === 'admin') isAuthenticated = true;
+          isAuthenticated = false;
         }
       } catch (netErr) {
-        // Offline / Live Server direct dev fallback
-        if (pass === 'tinus2026' || pass === 'admin' || pass === '1234') {
-          isAuthenticated = true;
+        // Offline / local static dev fallback
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+          if (pass === 'admin') isAuthenticated = true;
         }
       }
 

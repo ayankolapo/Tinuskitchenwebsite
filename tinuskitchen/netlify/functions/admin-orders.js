@@ -1,4 +1,4 @@
-const RAW_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'tinus2026';
+const RAW_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
 const ADMIN_PASSWORD = RAW_ADMIN_PASSWORD.trim().replace(/^['"]|['"]$/g, '');
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -21,6 +21,15 @@ function getProvidedPassword(event) {
 exports.handler = async function (event, context) {
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers: CORS_HEADERS, body: '' };
+  }
+
+  if (!ADMIN_PASSWORD) {
+    console.error('[Admin] ADMIN_PASSWORD environment variable is not configured');
+    return {
+      statusCode: 500,
+      headers: CORS_HEADERS,
+      body: JSON.stringify({ error: 'Server configuration error: ADMIN_PASSWORD not configured' })
+    };
   }
 
   const providedPass = getProvidedPassword(event);
