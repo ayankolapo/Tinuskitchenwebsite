@@ -1,0 +1,3282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin &amp; Kitchen Dashboard — Tinu's Kitchen Bistro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ══════════════════════════════════════════════
+       DESIGN TOKENS & SCALABLE DASHBOARD SYSTEM
+       ══════════════════════════════════════════════ */
+    :root {
+      --bg: #F8F9FA;
+      --sidebar-bg: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --charcoal: #1C1A17;
+      --muted: #64748B;
+      --border: #E2E8F0;
+      --border-light: #F1F5F9;
+      --primary: #C21B17;
+      --primary-hover: #A81613;
+      --gold: #D49B28;
+      --gold-soft: rgba(212, 155, 40, 0.12);
+      --green: #10B981;
+      --green-soft: rgba(16, 185, 129, 0.12);
+      --blue: #3B82F6;
+      --blue-soft: rgba(59, 130, 246, 0.12);
+      --amber: #F59E0B;
+      --amber-soft: rgba(245, 158, 11, 0.12);
+      --purple: #8B5CF6;
+      --purple-soft: rgba(139, 92, 246, 0.12);
+      --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════════════
+       SIDEBAR (SHOPZEN STYLE)
+       ══════════════════════════════════════════════ */
+    .dashboard-sidebar {
+      width: 250px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      min-height: 100vh;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      transition: width 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--charcoal);
+    }
+
+    .sidebar-logo-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sidebar-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .btn-sidebar-collapse {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #64748B;
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-sidebar-collapse:hover {
+      background: #F1F5F9;
+      color: var(--charcoal);
+      border-color: #94A3B8;
+    }
+
+    /* Collapsed Sidebar State (Desktop) */
+    .dashboard-sidebar.collapsed {
+      width: 72px;
+    }
+
+    .dashboard-sidebar.collapsed .brand-title,
+    .dashboard-sidebar.collapsed .sidebar-section-title,
+    .dashboard-sidebar.collapsed .sidebar-item span:not(.sidebar-badge),
+    .dashboard-sidebar.collapsed .btn-visit-site span {
+      display: none;
+    }
+
+    .dashboard-sidebar.collapsed .sidebar-header {
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px 8px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dashboard-sidebar.collapsed .btn-sidebar-collapse {
+      display: flex;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .brand-title span {
+      color: var(--gold);
+    }
+
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94A3B8;
+      padding: 20px 20px 8px;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 12px;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: #475569;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-item:hover {
+      background: #F1F5F9;
+      color: var(--charcoal);
+    }
+
+    .sidebar-item.active {
+      background: rgba(194, 27, 23, 0.08);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .sidebar-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar-badge {
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 50px;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .btn-visit-site {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 9px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: #475569;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-visit-site:hover {
+      background: #F8FAFC;
+      border-color: var(--charcoal);
+      color: var(--charcoal);
+    }
+
+    /* ══════════════════════════════════════════════
+       MAIN CONTENT WRAPPER
+       ══════════════════════════════════════════════ */
+    .dashboard-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* Top Command Header */
+    .dashboard-topbar {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .search-box {
+      position: relative;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 16px 9px 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #F8FAFC;
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      color: var(--charcoal);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      background: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(194, 27, 23, 0.08);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-topbar {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-topbar:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: var(--charcoal);
+    }
+
+    .btn-topbar.active {
+      background: var(--green-soft);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #065F46;
+    }
+
+    .staff-avatar-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px 4px 4px;
+      border-radius: 50px;
+      background: #F1F5F9;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .avatar-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    /* Dashboard Body View */
+    .dashboard-content {
+      padding: 24px 28px 60px;
+    }
+
+    /* Page Title Bar */
+    .page-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .page-title-text {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .page-title-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary-action {
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(194, 27, 23, 0.2);
+    }
+
+    .btn-primary-action:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ══════════════════════════════════════════════
+       KPI SUMMARY STAT CARDS (ROW OF 4)
+       ══════════════════════════════════════════════ */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+    }
+
+    .kpi-card:hover {
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .kpi-trend {
+      font-size: 0.76rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kpi-trend.green {
+      color: #10B981;
+    }
+
+    .kpi-trend.amber {
+      color: #F59E0B;
+    }
+
+    .kpi-trend.blue {
+      color: #3B82F6;
+    }
+
+    /* ══════════════════════════════════════════════
+       DATA TABLE CONTAINER (SCALABLE FOR HUNDREDS)
+       ══════════════════════════════════════════════ */
+    .table-container-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+    }
+
+    /* Filter Tabs Bar */
+    .table-tabs-bar {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #FFFFFF;
+    }
+
+    .tab-pills-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow-x: auto;
+    }
+
+    .tab-pill {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #64748B;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .tab-pill:hover {
+      background: #F1F5F9;
+      color: var(--charcoal);
+    }
+
+    .tab-pill.active {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      color: var(--charcoal);
+      font-weight: 700;
+    }
+
+    /* Table Scroll Area */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.86rem;
+    }
+
+    .orders-table th {
+      background: #F8FAFC;
+      color: #64748B;
+      font-weight: 700;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .orders-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--charcoal);
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    .orders-table tr {
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .orders-table tbody tr:hover {
+      background: #F8FAFC;
+    }
+
+    .order-id-badge {
+      font-family: monospace;
+      font-weight: 800;
+      color: var(--charcoal);
+      background: #F1F5F9;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .customer-cell {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .customer-name {
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .customer-phone {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status-pill.pending {
+      background: var(--amber-soft);
+      color: #B45309;
+    }
+
+    .status-pill.preparing {
+      background: var(--gold-soft);
+      color: #9C6C0A;
+    }
+
+    .status-pill.ready {
+      background: var(--purple-soft);
+      color: #6D28D9;
+    }
+
+    .status-pill.delivered {
+      background: var(--green-soft);
+      color: #065F46;
+    }
+
+    .status-pill.cancelled {
+      background: rgba(239, 68, 68, 0.12);
+      color: #B91C1C;
+    }
+
+    .payment-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .payment-pill.paid {
+      background: #ECFDF5;
+      color: #047857;
+    }
+
+    .payment-pill.unpaid {
+      background: #FFFBEB;
+      color: #B45309;
+    }
+
+    .action-icons-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-row-action {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-row-action:hover {
+      background: #FFFFFF;
+      color: var(--charcoal);
+      border-color: #94A3B8;
+    }
+
+    .btn-row-action.wa {
+      color: #10B981;
+    }
+
+    .btn-row-action.wa:hover {
+      background: #10B981;
+      color: #FFFFFF;
+      border-color: #10B981;
+    }
+
+    /* ══════════════════════════════════════════════
+       SECTION 2: DELIVERY ZONES & PRICING MANAGER
+       ══════════════════════════════════════════════ */
+    .zones-view-wrap {
+      display: none;
+    }
+
+    .zone-header-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .zone-header-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .zone-header-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .zone-table-wrap {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    /* ══════════════════════════════════════════════
+       SLIDE-OVER / ORDER DETAILS DRAWER
+       ══════════════════════════════════════════════ */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .order-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 520px;
+      background: #FFFFFF;
+      z-index: 101;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .drawer-overlay.open .order-drawer {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #F8FAFC;
+    }
+
+    .drawer-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .btn-close-drawer {
+      background: transparent;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #64748B;
+      padding: 4px;
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .drawer-section {
+      margin-bottom: 24px;
+    }
+
+    .drawer-section-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748B;
+      margin-bottom: 10px;
+    }
+
+    .status-select-card {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .status-btn-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-status-choice {
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-status-choice:hover {
+      border-color: var(--charcoal);
+      color: var(--charcoal);
+    }
+
+    .btn-status-choice.active {
+      background: var(--charcoal);
+      color: #FFFFFF;
+      border-color: var(--charcoal);
+    }
+
+    .drawer-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #F8FAFC;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .drawer-item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+    }
+
+    .drawer-footer {
+      padding: 12px 18px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #FFFFFF;
+    }
+
+    .status-dropdown-card {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    /* Custom Status Dropdown Component */
+    .custom-status-picker {
+      position: relative;
+      margin-top: 6px;
+    }
+
+    .custom-picker-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      margin-bottom: 6px;
+    }
+
+    .custom-picker-trigger {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .custom-picker-trigger:hover {
+      border-color: #94A3B8;
+      background: #F8FAFC;
+    }
+
+    .custom-picker-trigger.open {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(194, 27, 23, 0.1);
+    }
+
+    .trigger-selected-display {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .status-badge-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .status-badge-chip.pending {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .status-badge-chip.preparing {
+      background: #FEF9C3;
+      color: #854D0E;
+    }
+
+    .status-badge-chip.ready {
+      background: #EDE9FE;
+      color: #5B21B6;
+    }
+
+    .status-badge-chip.delivered {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .status-badge-chip.cancelled {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .trigger-chevron {
+      font-size: 0.85rem;
+      color: #64748B;
+      transition: transform 0.2s ease;
+    }
+
+    .custom-picker-trigger.open .trigger-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Floating Options Dropdown Menu */
+    .custom-picker-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      padding: 6px;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .custom-picker-menu.open {
+      display: flex;
+      animation: dropdownFadeIn 0.15s ease-out;
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .picker-opt-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .picker-opt-item:hover {
+      background: #F1F5F9;
+    }
+
+    .picker-opt-item.selected {
+      background: rgba(194, 27, 23, 0.06);
+    }
+
+    .opt-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .opt-badge.pending {
+      background: #FEF3C7;
+    }
+
+    .opt-badge.preparing {
+      background: #FEF9C3;
+    }
+
+    .opt-badge.ready {
+      background: #EDE9FE;
+    }
+
+    .opt-badge.delivered {
+      background: #D1FAE5;
+    }
+
+    .opt-badge.cancelled {
+      background: #FEE2E2;
+    }
+
+    .opt-info {
+      flex: 1;
+    }
+
+    .opt-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.25;
+    }
+
+    .opt-desc {
+      font-size: 0.74rem;
+      color: #64748B;
+      margin-top: 1px;
+    }
+
+    .opt-check {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: none;
+    }
+
+    .picker-opt-item.selected .opt-check {
+      display: block;
+    }
+
+    /* Drawer Footer Action Buttons (Design Chief Proportions) */
+    .drawer-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .btn-confirm-status {
+      flex: 1;
+      height: 38px;
+      padding: 0 12px;
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      box-shadow: 0 1px 4px rgba(194, 27, 23, 0.2);
+    }
+
+    .btn-confirm-status:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-confirm-status.updated-flash {
+      background: #10B981 !important;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-wa-notify {
+      flex: 1;
+      height: 38px;
+      padding: 0 12px;
+      background: #10B981;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 4px rgba(16, 185, 129, 0.2);
+    }
+
+    .btn-wa-notify:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+
+    .btn-drawer-close {
+      width: 100%;
+      height: 32px;
+      background: #F8FAFC;
+      color: #64748B;
+      border: 1px solid var(--border);
+      padding: 0 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-drawer-close:hover {
+      background: #F1F5F9;
+      color: var(--charcoal);
+      border-color: #CBD5E1;
+    }
+
+    /* Modal for Add Zone */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      z-index: 120;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      max-width: 440px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .toast-pill {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--charcoal);
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transform: translateY(100px);
+      transition: transform 0.25s ease;
+      z-index: 200;
+    }
+
+    .toast-pill.show {
+      transform: translateY(0);
+    }
+
+    /* ══════ ADMIN AUTH LOGIN OVERLAY (CLEAN BISTRO DESIGN) ══════ */
+    .admin-login-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .admin-login-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .admin-login-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E2D9;
+      border-top: 4px solid var(--primary);
+      border-radius: 20px;
+      max-width: 390px;
+      width: 100%;
+      padding: 34px 28px 28px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(0, 0, 0, 0.04);
+      text-align: center;
+      animation: loginCardPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes loginCardPop {
+      0% { opacity: 0; transform: scale(0.96) translateY(10px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .login-brand-header {
+      margin-bottom: 22px;
+    }
+
+    .login-logo-circle {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 14px rgba(212, 155, 40, 0.22);
+      background: #FAF7F2;
+    }
+
+    .login-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .login-brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      color: var(--charcoal);
+      margin: 0 0 6px 0;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .login-brand-name span {
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    .login-badge-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #FAF7F2;
+      border: 1px solid #E8E2D9;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #78716C;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .login-subtitle {
+      font-size: 0.84rem;
+      color: #64748B;
+      line-height: 1.45;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    .login-pass-wrap {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .login-input {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1.5px solid #CBD5E1;
+      color: var(--charcoal);
+      border-radius: 10px;
+      padding: 12px 42px 12px 14px;
+      font-size: 0.96rem;
+      outline: none;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+      font-family: var(--font-body);
+    }
+
+    .login-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 155, 40, 0.15);
+    }
+
+    .login-toggle-eye {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      font-size: 1.05rem;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s ease;
+    }
+
+    .login-toggle-eye:hover {
+      color: var(--charcoal);
+    }
+
+    .login-error-msg {
+      display: none;
+      background: #FEF2F2;
+      border: 1px solid #FCA5A5;
+      color: #DC2626;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .btn-admin-unlock {
+      width: 100%;
+      background: var(--primary);
+      border: none;
+      color: #FFFFFF;
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 0.94rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(194, 27, 23, 0.25);
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+    }
+
+    .btn-admin-unlock:hover {
+      background: #A01512;
+      box-shadow: 0 6px 18px rgba(194, 27, 23, 0.35);
+    }
+
+    .btn-admin-unlock:active {
+      transform: translateY(0);
+    }
+
+    .btn-admin-unlock:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .login-back-link {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: #64748B;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .login-back-link:hover {
+      color: var(--primary);
+    }
+
+    /* Modal wide & custom inputs */
+    .modal-card-wide {
+      max-width: 520px;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 540px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+
+    .modal-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .modal-select {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      margin-top: 2px;
+      margin-bottom: 14px;
+      outline: none;
+      background: #FFFFFF;
+      box-sizing: border-box;
+    }
+
+    .modal-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      margin-top: 2px;
+      margin-bottom: 14px;
+      outline: none;
+      min-height: 60px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+
+    /* Logout buttons */
+    .btn-sidebar-logout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 9px 12px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 10px;
+      color: #DC2626;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .btn-sidebar-logout:hover {
+      background: #DC2626;
+      color: #FFFFFF;
+      border-color: #DC2626;
+    }
+
+    /* Delivery Zone Status Pill Switch */
+    .zone-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .zone-status-badge.active {
+      background: #DCFCE7;
+      color: #166534;
+      border: 1px solid #BBF7D0;
+    }
+
+    .zone-status-badge.active:hover {
+      background: #BBF7D0;
+    }
+
+    .zone-status-badge.inactive {
+      background: #F1F5F9;
+      color: #64748B;
+      border: 1px solid #E2E8F0;
+    }
+
+    .zone-status-badge.inactive:hover {
+      background: #E2E8F0;
+      color: #334155;
+    }
+
+    /* Mobile Off-Canvas Drawer & Backdrop */
+    .sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .sidebar-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .btn-sidebar-close-mobile {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #64748B;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-sidebar-close-mobile:hover {
+      background: #F1F5F9;
+      color: var(--charcoal);
+    }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE DESIGN SYSTEM (CHIEF DESIGNER LEVEL)
+       ══════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .dashboard-content {
+        padding: 20px 20px 50px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 900px) {
+
+      /* Mobile & Tablet Off-Canvas Drawer */
+      .dashboard-sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 270px !important;
+        z-index: 200 !important;
+        transform: translateX(-100%) !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25) !important;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        display: flex !important;
+      }
+
+      .dashboard-sidebar.mobile-open {
+        transform: translateX(0) !important;
+      }
+
+      .btn-sidebar-close-mobile {
+        display: flex !important;
+      }
+
+      .btn-sidebar-collapse {
+        display: none !important;
+      }
+
+      .brand-title,
+      .sidebar-section-title,
+      .sidebar-item span:not(.sidebar-badge),
+      .btn-visit-site span {
+        display: inline !important;
+      }
+
+      .sidebar-item {
+        justify-content: space-between !important;
+        padding: 10px 14px !important;
+      }
+
+      .sidebar-header {
+        justify-content: space-between !important;
+        flex-direction: row !important;
+        padding: 20px 18px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-topbar {
+        padding: 10px 14px;
+        gap: 10px;
+      }
+
+      .search-box {
+        max-width: 220px;
+      }
+
+      #soundLabel,
+      #refreshLabel,
+      .staff-role-label {
+        display: none !important;
+      }
+
+      .staff-avatar-pill {
+        padding: 2px !important;
+        background: transparent !important;
+      }
+
+      .topbar-actions {
+        gap: 6px;
+      }
+
+      .page-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .page-title-text {
+        font-size: 1.35rem;
+      }
+
+      .page-title-controls {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+      }
+
+      .page-title-controls .btn-topbar,
+      .page-title-controls .btn-primary-action {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+      }
+
+      .table-tabs-bar {
+        padding: 10px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .tab-pills-group {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+
+      .tab-pills-group::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-pill {
+        padding: 5px 12px;
+        font-size: 0.78rem;
+      }
+
+      /* Ensure drawer takes 100% viewport width on mobile */
+      .order-drawer {
+        width: 100vw !important;
+        max-width: 100vw !important;
+      }
+
+      .drawer-header {
+        padding: 14px 16px;
+      }
+
+      .drawer-body {
+        padding: 16px;
+      }
+
+      .drawer-footer {
+        padding: 12px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-content {
+        padding: 12px 12px 40px;
+      }
+
+      .dashboard-topbar {
+        padding: 8px 12px;
+      }
+
+      .search-box {
+        max-width: 100%;
+        width: 100%;
+        flex: 1 1 100%;
+        order: 3;
+      }
+
+      .dashboard-topbar {
+        flex-wrap: wrap;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .kpi-card {
+        padding: 10px 12px;
+      }
+
+      .kpi-value {
+        font-size: 1.3rem;
+      }
+
+      .kpi-label {
+        font-size: 0.72rem;
+        margin-bottom: 4px;
+      }
+
+      .kpi-trend {
+        font-size: 0.68rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Backdrop overlay for mobile sidebar -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeMobileSidebar()"></div>
+
+  <!-- ═════════ 1. SIDEBAR NAVIGATION ═════════ -->
+  <aside class="dashboard-sidebar" id="dashboardSidebar">
+    <div class="sidebar-header">
+      <a href="admin.html" class="sidebar-brand">
+        <div class="sidebar-logo-badge">
+          <img src="images/tinu-s-kitchen-bistro.jpeg" alt="Tinu's Kitchen Bistro Logo" class="sidebar-logo-img" />
+        </div>
+        <div class="brand-title">Tinu's Kitchen <span>Bistro</span></div>
+      </a>
+      <button type="button" class="btn-sidebar-collapse" id="btnSidebarCollapse" onclick="toggleSidebar()"
+        title="Collapse / Expand Sidebar">
+        <span id="collapseIcon">◀</span>
+      </button>
+      <button type="button" class="btn-sidebar-close-mobile" onclick="closeMobileSidebar()" title="Close Navigation">
+        <span>✕</span>
+      </button>
+    </div>
+
+    <div class="sidebar-section-title">Operations</div>
+    <ul class="sidebar-menu">
+      <li>
+        <a class="sidebar-item active" id="menuItemOrders" onclick="switchView('orders')">
+          <div class="sidebar-item-left">
+            <span>📦</span>
+            <span>Orders Board</span>
+          </div>
+          <span class="sidebar-badge" id="sideBadgePending">0</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-item" id="menuItemZones" onclick="switchView('zones')">
+          <div class="sidebar-item-left">
+            <span>📍</span>
+            <span>Delivery Zones &amp; Fees</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-section-title">Storefront</div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="index.html" target="_blank" class="sidebar-item">
+          <div class="sidebar-item-left">
+            <span>🍽️</span>
+            <span>Live Bistro Menu</span>
+          </div>
+          <span style="font-size:0.75rem;color:#94A3B8;">↗</span>
+        </a>
+      </li>
+      <li>
+        <a href="order-status.html" target="_blank" class="sidebar-item">
+          <div class="sidebar-item-left">
+            <span>🛵</span>
+            <span>Customer Tracker</span>
+          </div>
+          <span style="font-size:0.75rem;color:#94A3B8;">↗</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-visit-site">
+        <span>🌐 Open Website</span>
+      </a>
+      <button type="button" class="btn-sidebar-logout" onclick="adminLogout()" title="Log out from Kitchen Dashboard">
+        <span>🚪 Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ═════════ 2. MAIN WORKSPACE ═════════ -->
+  <main class="dashboard-main">
+    <!-- TOP COMMAND BAR -->
+    <header class="dashboard-topbar">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;max-width:520px;">
+        <button type="button" class="btn-topbar" onclick="toggleSidebar()" title="Toggle Sidebar">
+          <span>☰</span>
+        </button>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="globalSearchInput" class="search-input"
+            placeholder="Search by customer, order #ID, phone..." oninput="handleSearch(this.value)" />
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="btn-topbar active" id="btnSoundToggle" onclick="toggleSound()">
+          <span id="soundIcon">🔔</span>
+          <span id="soundLabel">Sound On</span>
+        </button>
+        <button class="btn-topbar" onclick="fetchOrders(true)" id="btnManualRefresh" title="Refresh Feed">
+          <span>🔄</span>
+          <span id="refreshLabel">Refresh Feed</span>
+        </button>
+        <div class="staff-avatar-pill">
+          <div class="avatar-circle">TK</div>
+          <span class="staff-role-label">Kitchen Desk</span>
+        </div>
+        <button class="btn-topbar" onclick="adminLogout()" title="Log Out / Lock Screen" style="color:#DC2626;border-color:rgba(220,38,38,0.25);">
+          <span>🚪 Exit</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="dashboard-content">
+
+      <!-- ════ VIEW 1: ORDERS DASHBOARD ════ -->
+      <div id="viewOrders">
+        <!-- PAGE TITLE ROW -->
+        <div class="page-title-row">
+          <div>
+            <h1 class="page-title-text">Orders</h1>
+            <p style="font-size:0.84rem;color:var(--muted);margin-top:2px;">Live incoming orders, kitchen prep pipeline,
+              and dispatch status.</p>
+          </div>
+          <div class="page-title-controls">
+            <button class="btn-topbar" onclick="exportOrdersCSV()">📥 Export CSV</button>
+            <button class="btn-primary-action" onclick="openNewOrderModal()">+ New Walk-In Order</button>
+          </div>
+        </div>
+
+        <!-- 4 KPI SUMMARY CARDS -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Orders</div>
+            <div class="kpi-value" id="kpiTotal">0</div>
+            <div class="kpi-trend green">▲ +18.2% this week</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Pending Confirmation</div>
+            <div class="kpi-value" id="kpiPending" style="color:var(--amber);">0</div>
+            <div class="kpi-trend amber">● Awaiting kitchen accept</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">In Kitchen Prep</div>
+            <div class="kpi-value" id="kpiPreparing" style="color:var(--gold);">0</div>
+            <div class="kpi-trend blue">🍳 Being cooked fresh</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Delivered / Revenue</div>
+            <div class="kpi-value" id="kpiRevenue" style="color:var(--green);font-size:1.6rem;">₦0</div>
+            <div class="kpi-trend green">✓ Fulfilled orders</div>
+          </div>
+        </div>
+
+        <!-- ORDERS DATA TABLE -->
+        <div class="table-container-card">
+          <!-- Filter Tabs Bar -->
+          <div class="table-tabs-bar">
+            <div class="tab-pills-group">
+              <button class="tab-pill active" onclick="setFilter('all', this)">All Orders</button>
+              <button class="tab-pill" onclick="setFilter('pending', this)">Pending</button>
+              <button class="tab-pill" onclick="setFilter('preparing', this)">In Kitchen</button>
+              <button class="tab-pill" onclick="setFilter('ready', this)">Out for Delivery</button>
+              <button class="tab-pill" onclick="setFilter('delivered', this)">Delivered</button>
+              <button class="tab-pill" onclick="setFilter('cancelled', this)">Cancelled</button>
+            </div>
+            <div style="font-size:0.8rem;color:#64748B;">
+              Showing <strong id="ordersCountBadge">0</strong> orders
+            </div>
+          </div>
+
+          <!-- Table View -->
+          <div class="table-responsive">
+            <table class="orders-table">
+              <thead>
+                <tr>
+                  <th style="width:36px;"><input type="checkbox" id="selectAllCheckbox"
+                      onchange="toggleSelectAll(this)" /></th>
+                  <th>Order</th>
+                  <th>Date &amp; Time</th>
+                  <th>Customer</th>
+                  <th>Payment</th>
+                  <th>Total</th>
+                  <th>Delivery Location</th>
+                  <th>Items</th>
+                  <th>Fulfillment Status</th>
+                  <th style="text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <!-- Dynamically populated rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ VIEW 2: DELIVERY ZONES & PRICING MANAGER ════ -->
+      <div id="viewZones" class="zones-view-wrap">
+        <div class="zone-header-card">
+          <div>
+            <h2 class="zone-header-title">Delivery Locations &amp; Pricing</h2>
+            <p class="zone-header-sub">Manage dispatch fee rates and estimated arrival times by Lagos neighborhood.</p>
+          </div>
+          <button class="btn-primary-action" onclick="openAddZoneModal()">+ Add New Delivery Zone</button>
+        </div>
+
+        <div class="zone-table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Zone / Neighborhood</th>
+                <th>Estimated Dispatch Time</th>
+                <th>Delivery Fee</th>
+                <th>Status</th>
+                <th style="text-align:right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="zonesTableBody">
+              <!-- Dynamically populated zones -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═════════ 3. ORDER DETAIL SLIDE-OVER DRAWER ═════════ -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer(event)">
+    <div class="order-drawer" onclick="event.stopPropagation()">
+      <div class="drawer-header">
+        <div>
+          <span style="font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;">Order
+            Details</span>
+          <div class="drawer-title" id="drawerRefTitle">#TKB-0000</div>
+        </div>
+        <button class="btn-close-drawer" onclick="closeDrawer(null)">✕</button>
+      </div>
+
+      <div class="drawer-body" id="drawerBody">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="drawer-footer" id="drawerFooter">
+        <!-- Actions rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════ 4. ADD / EDIT ZONE MODAL ═════════ -->
+  <div class="modal-backdrop" id="zoneModal">
+    <div class="modal-card">
+      <h3 style="font-family:var(--font-serif);margin-bottom:14px;" id="zoneModalTitle">Add Delivery Zone</h3>
+
+      <label class="modal-label">Zone Name / Area</label>
+      <input type="text" id="zoneNameInput" class="modal-input" placeholder="e.g. Festac & Mile 2" />
+
+      <label class="modal-label">Estimated Delivery Time</label>
+      <input type="text" id="zoneTimeInput" class="modal-input" placeholder="e.g. 30 – 45 mins" />
+
+      <label class="modal-label">Delivery Fee (₦)</label>
+      <input type="number" id="zoneFeeInput" class="modal-input" placeholder="e.g. 2500" />
+
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:10px;">
+        <button type="button" class="btn-topbar" onclick="closeZoneModal()">Cancel</button>
+        <button type="button" class="btn-primary-action" onclick="saveZone()">Save to Database</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════ 5. WALK-IN / COUNTER ORDER MODAL ═════════ -->
+  <div class="modal-backdrop" id="walkinModal">
+    <div class="modal-card modal-card-wide">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div>
+          <h3 style="font-family:var(--font-serif);font-size:1.25rem;color:var(--charcoal);margin:0;">+ Register Walk-In Order</h3>
+          <p style="font-size:0.8rem;color:var(--muted);margin-top:2px;">Adds instant order to kitchen queue &amp; Supabase database.</p>
+        </div>
+        <button type="button" class="btn-row-action" onclick="closeWalkinModal()" style="font-size:1.1rem;">✕</button>
+      </div>
+
+      <form onsubmit="submitWalkinOrder(event)">
+        <div class="form-grid-2">
+          <div>
+            <label class="modal-label">Customer Name *</label>
+            <input type="text" id="walkinCustomerName" class="modal-input" placeholder="e.g. Adeola Johnson" required />
+          </div>
+          <div>
+            <label class="modal-label">Customer Phone *</label>
+            <input type="tel" id="walkinCustomerPhone" class="modal-input" placeholder="e.g. 08123456789" required />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div>
+            <label class="modal-label">Service Type</label>
+            <select id="walkinDeliveryType" class="modal-select">
+              <option value="pickup">🥡 Counter Pickup / Takeaway</option>
+              <option value="delivery">🛵 Direct Local Dispatch</option>
+            </select>
+          </div>
+          <div>
+            <label class="modal-label">Total Amount (₦) *</label>
+            <input type="number" id="walkinAmount" class="modal-input" placeholder="e.g. 6500" min="500" step="100" required />
+          </div>
+        </div>
+
+        <label class="modal-label">Dishes &amp; Portion Breakdown *</label>
+        <textarea id="walkinMealDetails" class="modal-textarea" placeholder="e.g. 2x Jollof Rice Combo, 1x Peppered Turkey, 1x Cold Maltina" required></textarea>
+
+        <label class="modal-label">Kitchen Notes / Special Requests</label>
+        <input type="text" id="walkinNotes" class="modal-input" placeholder="e.g. Pack pepper sauce separately, extra serviette" />
+
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:10px;">
+          <button type="button" class="btn-topbar" onclick="closeWalkinModal()">Cancel</button>
+          <button type="submit" class="btn-primary-action" id="btnSubmitWalkin">✓ Send to Kitchen Queue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═════════ 6. CUSTOM CONFIRM MODAL ═════════ -->
+  <div class="modal-backdrop" id="adminConfirmModal">
+    <div class="modal-card" style="max-width:380px;text-align:center;">
+      <div style="font-size:2.2rem;margin-bottom:10px;">⚠️</div>
+      <h3 style="font-family:var(--font-serif);font-size:1.18rem;color:var(--charcoal);margin-bottom:8px;" id="confirmModalTitle">Are you sure?</h3>
+      <p style="font-size:0.85rem;color:#64748B;line-height:1.5;margin-bottom:20px;" id="confirmModalMsg">This action cannot be undone.</p>
+      <div style="display:flex;gap:10px;justify-content:center;">
+        <button type="button" class="btn-topbar" id="btnConfirmCancel" style="flex:1;">Cancel</button>
+        <button type="button" class="btn-primary-action" id="btnConfirmOk" style="flex:1;background:#DC2626;border-color:#DC2626;">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════ 7. CUSTOM ALERT MODAL ═════════ -->
+  <div class="modal-backdrop" id="adminAlertModal">
+    <div class="modal-card" style="max-width:360px;text-align:center;">
+      <div style="font-size:2.2rem;margin-bottom:10px;" id="alertModalIcon">ℹ️</div>
+      <h3 style="font-family:var(--font-serif);font-size:1.15rem;color:var(--charcoal);margin-bottom:8px;" id="alertModalTitle">Notice</h3>
+      <p style="font-size:0.85rem;color:#64748B;line-height:1.5;margin-bottom:20px;" id="alertModalMsg"></p>
+      <button type="button" class="btn-primary-action" onclick="closeAdminAlert()" style="width:100%;">Understood</button>
+    </div>
+  </div>
+
+  <!-- ═════════ 8. CLEAN BISTRO ADMIN LOGIN OVERLAY ═════════ -->
+  <div class="admin-login-overlay" id="adminLoginOverlay">
+    <div class="admin-login-card">
+      <div class="login-brand-header">
+        <div class="login-logo-circle">
+          <img src="images/tinu-s-kitchen-bistro.jpeg" alt="Tinu's Kitchen Bistro Logo" class="login-logo-img" />
+        </div>
+        <h2 class="login-brand-name">Tinu's Kitchen <span>Bistro</span></h2>
+        <span class="login-badge-pill">Staff Portal</span>
+      </div>
+
+      <p class="login-subtitle">Enter your kitchen staff passkey to access live incoming orders and delivery pricing controls.</p>
+
+      <div class="login-error-msg" id="loginErrorMsg">
+        ⚠️ Incorrect Passkey. Please verify and try again.
+      </div>
+
+      <form onsubmit="submitAdminLogin(event)">
+        <div class="login-pass-wrap">
+          <input type="password" id="adminPassInput" class="login-input" placeholder="Staff Passkey" autocomplete="current-password" autofocus required />
+          <button type="button" class="login-toggle-eye" onclick="togglePassVisibility()" title="Show/Hide passkey">
+            <span id="passEyeIcon">👁️</span>
+          </button>
+        </div>
+
+        <button type="submit" class="btn-admin-unlock" id="btnUnlockDashboard">
+          <span>Unlock Dashboard</span>
+        </button>
+      </form>
+
+      <a href="index.html" class="login-back-link">← Return to Storefront Website</a>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="dashToast" class="toast-pill">Updated</div>
+
+  <!-- ═════════ JAVASCRIPT LOGIC ═════════ -->
+  <script>
+    const TKB_WHATSAPP_PHONE = '2348162918036';
+    let allOrders = [];
+    let currentFilter = 'all';
+    let searchQuery = '';
+    let soundEnabled = true;
+    let selectedOrderId = null;
+    let editingZoneId = null;
+
+    // Default Lagos Delivery Zones (Synced with Supabase)
+    const DEFAULT_ZONES = [
+      { id: 'zone_1', name: 'Nnobi & outside IPaye', time: '15 – 25 mins', fee: 1000, active: true },
+      { id: 'zone_2', name: 'Inside ipaye', time: '20 – 30 mins', fee: 1500, active: true },
+      { id: 'zone_3', name: 'Iba housing', time: '20 – 30 mins', fee: 1500, active: true },
+      { id: 'zone_4', name: 'Shonibare / peace Estate', time: '20 – 30 mins', fee: 1500, active: true },
+      { id: 'zone_5', name: 'Iyana school', time: '25 – 35 mins', fee: 2000, active: true },
+      { id: 'zone_6', name: 'Agboroko', time: '25 – 35 mins', fee: 2000, active: true },
+      { id: 'zone_7', name: 'Iba Junction', time: '25 – 35 mins', fee: 2000, active: true },
+      { id: 'zone_8', name: 'Aratumi', time: '25 – 35 mins', fee: 2000, active: true },
+      { id: 'zone_9', name: 'pakunola/mosadolohun/taleloju', time: '25 – 35 mins', fee: 2000, active: true },
+      { id: 'zone_10', name: 'Igbo elerin', time: '30 – 45 mins', fee: 2500, active: true },
+      { id: 'zone_11', name: 'PPL', time: '30 – 45 mins', fee: 2500, active: true },
+      { id: 'zone_12', name: 'Post Serice', time: '30 – 45 mins', fee: 2500, active: true },
+      { id: 'zone_13', name: 'Iyana Isashi', time: '35 – 50 mins', fee: 3000, active: true },
+      { id: 'zone_14', name: 'Obadore', time: '35 – 50 mins', fee: 3000, active: true },
+      { id: 'zone_15', name: 'Akesan Axis', time: '40 – 55 mins', fee: 3000, active: true }
+    ];
+
+    function getZones() {
+      try {
+        const stored = localStorage.getItem('tkb_delivery_zones');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          // If old 6-zone demo is cached, upgrade to new 15 zones
+          if (Array.isArray(parsed) && parsed.length >= 10) {
+            return parsed;
+          }
+        }
+        localStorage.setItem('tkb_delivery_zones', JSON.stringify(DEFAULT_ZONES));
+        return DEFAULT_ZONES;
+      } catch (e) {
+        return DEFAULT_ZONES;
+      }
+    }
+
+    function saveZones(zones) {
+      localStorage.setItem('tkb_delivery_zones', JSON.stringify(zones));
+      renderZones();
+    }
+
+    // Realistic Demo Orders for Instant Scalable Demonstration
+    const DEMO_ORDERS = [
+      {
+        id: 'ord_1001',
+        reference: 'TKB-7942',
+        customer_name: 'Adaeze Okonkwo',
+        phone: '08123456789',
+        delivery_address: 'Flat 4B, Harmony Estate, LASU Road, Iba',
+        location_zone: 'Iba & LASU Road',
+        items: [
+          { name: 'Jollof Rice Combo', quantity: 2, price: 3500 },
+          { name: 'Peppered Turkey', quantity: 1, price: 2500 }
+        ],
+        amount: 10500,
+        delivery_fee: 1000,
+        payment_status: 'paid',
+        status: 'pending',
+        notes: 'Extra pepper sauce on the side please!',
+        created_at: new Date(Date.now() - 4 * 60000).toISOString()
+      },
+      {
+        id: 'ord_1002',
+        reference: 'TKB-6531',
+        customer_name: 'Babatunde Alabi',
+        phone: '08098765432',
+        delivery_address: '14 Unity Street, near Ipaye Bus Stop, Iba',
+        location_zone: 'Iba & LASU Road',
+        items: [
+          { name: 'Stir-Fried Pasta Deluxe', quantity: 1, price: 4200 },
+          { name: 'Oreo Milkshake', quantity: 1, price: 2500 }
+        ],
+        amount: 7700,
+        delivery_fee: 1000,
+        payment_status: 'paid',
+        status: 'preparing',
+        notes: 'Call me when dispatch is 5 mins away',
+        created_at: new Date(Date.now() - 16 * 60000).toISOString()
+      },
+      {
+        id: 'ord_1003',
+        reference: 'TKB-4182',
+        customer_name: 'Fatimah Bello',
+        phone: '07033445566',
+        delivery_address: 'Hostel Block C, LASU Campus, Ojo',
+        location_zone: 'Ojo & Alaba',
+        items: [
+          { name: 'TKB Signature Fried Rice', quantity: 3, price: 3800 },
+          { name: 'Crispy Peppered Chicken', quantity: 3, price: 2200 }
+        ],
+        amount: 19500,
+        delivery_fee: 1500,
+        payment_status: 'paid',
+        status: 'ready',
+        notes: 'Delivery driver can call once at the gate',
+        created_at: new Date(Date.now() - 38 * 60000).toISOString()
+      },
+      {
+        id: 'ord_1004',
+        reference: 'TKB-1928',
+        customer_name: 'Chisom Eze',
+        phone: '08155667788',
+        delivery_address: '22 College Road, Ojo, Lagos',
+        location_zone: 'Ojo & Alaba',
+        items: [
+          { name: 'Bistro Club Sandwich', quantity: 2, price: 3200 }
+        ],
+        amount: 7900,
+        delivery_fee: 1500,
+        payment_status: 'paid',
+        status: 'delivered',
+        notes: 'Handed directly to client',
+        created_at: new Date(Date.now() - 90 * 60000).toISOString()
+      },
+      {
+        id: 'ord_1005',
+        reference: 'TKB-8821',
+        customer_name: 'Michael Adeleke',
+        phone: '08022334455',
+        delivery_address: 'Block 2, 23 Road, Festac Town, Lagos',
+        location_zone: 'Festac & Mile 2',
+        items: [
+          { name: 'Grilled Fish with Fried Plantain', quantity: 2, price: 5500 },
+          { name: 'Cold Maltina', quantity: 2, price: 800 }
+        ],
+        amount: 15100,
+        delivery_fee: 2500,
+        payment_status: 'paid',
+        status: 'delivered',
+        notes: 'Ring bell on arrival',
+        created_at: new Date(Date.now() - 140 * 60000).toISOString()
+      }
+    ];
+
+    function showToast(msg) {
+      const t = document.getElementById('dashToast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const btn = document.getElementById('btnSoundToggle');
+      document.getElementById('soundIcon').textContent = soundEnabled ? '🔔' : '🔕';
+      document.getElementById('soundLabel').textContent = soundEnabled ? 'Sound On' : 'Muted';
+      btn.classList.toggle('active', soundEnabled);
+      showToast(soundEnabled ? 'Kitchen sound alerts active' : 'Sound alerts muted');
+    }
+
+    // View Switching
+    function switchView(viewName) {
+      document.getElementById('viewOrders').style.display = viewName === 'orders' ? 'block' : 'none';
+      document.getElementById('viewZones').style.display = viewName === 'zones' ? 'block' : 'none';
+
+      document.getElementById('menuItemOrders').classList.toggle('active', viewName === 'orders');
+      document.getElementById('menuItemZones').classList.toggle('active', viewName === 'zones');
+
+      if (viewName === 'zones') {
+        renderZones();
+      }
+    }
+
+    // Orders Fetching & Rendering
+    async function fetchOrders(showToastMsg = false) {
+      const token = getAdminAuthToken();
+      let serverOrders = [];
+
+      if (token) {
+        try {
+          const res = await fetch('/.netlify/functions/admin-orders?type=orders', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (res.status === 401) {
+            console.warn('Admin token unauthorized');
+            adminLogout('Session expired. Please enter staff passkey.');
+            return;
+          }
+          const data = await res.json();
+          if (data.success && Array.isArray(data.orders)) {
+            serverOrders = data.orders;
+          }
+        } catch (e) {
+          console.warn('Offline mode or server unreachable, loading local/demo orders:', e);
+        }
+      }
+
+      // Merge real checkout orders placed locally in browser
+      let localOrders = [];
+      try {
+        localOrders = JSON.parse(localStorage.getItem('tkb_orders') || '[]');
+      } catch (e) { }
+
+      if (serverOrders.length > 0) {
+        // Merge without duplicates
+        const map = new Map();
+        serverOrders.forEach(o => map.set(o.reference || o.id, o));
+        localOrders.forEach(o => {
+          const ref = o.reference || o.id;
+          if (!map.has(ref)) map.set(ref, o);
+        });
+        allOrders = Array.from(map.values()).map(o => {
+          const amt = Number(o.total_amount != null ? o.total_amount : o.amount) || 0;
+          const ph = o.customer_phone || o.phone || '';
+          return {
+            ...o,
+            amount: amt,
+            total_amount: amt,
+            phone: ph,
+            customer_phone: ph
+          };
+        });
+      } else if (localOrders.length > 0) {
+        allOrders = localOrders.map(o => {
+          const amt = Number(o.total_amount != null ? o.total_amount : o.amount) || 0;
+          const ph = o.customer_phone || o.phone || '';
+          return { ...o, amount: amt, total_amount: amt, phone: ph, customer_phone: ph };
+        });
+      } else {
+        allOrders = DEMO_ORDERS.map(o => ({ ...o, total_amount: o.amount, customer_phone: o.phone }));
+      }
+
+      // Always sort by most recent first (newest created_at / paid_at at top)
+      allOrders.sort((a, b) => {
+        const timeA = new Date(a.created_at || a.paid_at || 0).getTime();
+        const timeB = new Date(b.created_at || b.paid_at || 0).getTime();
+        return timeB - timeA;
+      });
+
+      updateKPIs();
+      renderOrdersTable();
+      if (showToastMsg) showToast('✓ Order feed refreshed');
+    }
+
+    function updateKPIs() {
+      const total = allOrders.length;
+      const pending = allOrders.filter(o => o.status === 'pending').length;
+      const preparing = allOrders.filter(o => o.status === 'preparing').length;
+      const delivered = allOrders.filter(o => o.status === 'delivered');
+      const revenue = delivered.reduce((sum, o) => sum + (Number(o.total_amount != null ? o.total_amount : o.amount) || 0), 0);
+
+      document.getElementById('kpiTotal').textContent = total;
+      document.getElementById('kpiPending').textContent = pending;
+      document.getElementById('kpiPreparing').textContent = preparing;
+      document.getElementById('kpiRevenue').textContent = '₦' + revenue.toLocaleString();
+      document.getElementById('sideBadgePending').textContent = pending;
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll('.tab-pill').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      renderOrdersTable();
+    }
+
+    function handleSearch(q) {
+      searchQuery = q.toLowerCase().trim();
+      renderOrdersTable();
+    }
+
+    function renderOrdersTable() {
+      const tbody = document.getElementById('ordersTableBody');
+      if (!tbody) return;
+
+      let filtered = allOrders.filter(o => {
+        if (currentFilter !== 'all' && (o.status || '').toLowerCase() !== currentFilter) {
+          return false;
+        }
+        if (searchQuery) {
+          const matchName = (o.customer_name || '').toLowerCase().includes(searchQuery);
+          const matchRef = (o.reference || '').toLowerCase().includes(searchQuery);
+          const matchPhone = (o.phone || '').includes(searchQuery);
+          const matchAddr = (o.delivery_address || '').toLowerCase().includes(searchQuery);
+          if (!matchName && !matchRef && !matchPhone && !matchAddr) return false;
+        }
+        return true;
+      });
+
+      document.getElementById('ordersCountBadge').textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="10" style="text-align:center;padding:48px 20px;color:var(--muted);">
+              <div style="font-size:2rem;margin-bottom:8px;">🔍</div>
+              <strong>No orders found</strong>
+              <p style="font-size:0.8rem;margin-top:4px;">Try adjusting your filter or search query</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(o => {
+        const dateStr = o.created_at ? new Date(o.created_at).toLocaleTimeString('en-NG', { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' }) : 'Just now';
+        const items = Array.isArray(o.items) ? o.items : [];
+        const itemsCount = items.reduce((sum, i) => sum + (i.quantity || i.qty || 1), 0) || 1;
+        const status = (o.status || 'pending').toLowerCase();
+        const statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
+        const locationZone = o.location_zone || (o.delivery_address ? o.delivery_address.split(',')[0] : 'Iba Central');
+
+        return `
+          <tr onclick="openDrawer('${o.id}')">
+            <td onclick="event.stopPropagation()"><input type="checkbox" /></td>
+            <td><span class="order-id-badge">#${o.reference || o.id}</span></td>
+            <td><span style="color:#64748B;font-size:0.82rem;">${dateStr}</span></td>
+            <td>
+              <div class="customer-cell">
+                <span class="customer-name">${o.customer_name || 'Guest Diner'}</span>
+                <span class="customer-phone">${o.customer_phone || o.phone || 'No phone'}</span>
+              </div>
+            </td>
+            <td>
+              <span class="payment-pill paid">● Paid</span>
+            </td>
+            <td><strong style="font-size:0.92rem;">₦${Number(o.total_amount != null ? o.total_amount : o.amount || 0).toLocaleString()}</strong></td>
+            <td>
+              <span style="font-size:0.84rem;color:#475569;">📍 ${locationZone}</span>
+            </td>
+            <td><span style="color:#64748B;">${itemsCount} items</span></td>
+            <td>
+              <span class="status-pill ${status}">● ${statusLabel}</span>
+            </td>
+            <td style="text-align:right;" onclick="event.stopPropagation()">
+              <div class="action-icons-group" style="justify-content:flex-end;">
+                <button class="btn-row-action" title="View Order Details" onclick="openDrawer('${o.id}')">👁️</button>
+                <button class="btn-row-action wa" title="WhatsApp Customer" onclick="openWhatsAppChat('${o.id}')">💬</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Order Detail Slide-Over Drawer
+    let currentSelectedDrawerStatus = 'pending';
+
+    const STATUS_CONFIG = {
+      'pending': { label: 'Pending Confirmation', icon: '⏳', desc: 'Payment logged, order awaiting kitchen start', chipClass: 'pending' },
+      'preparing': { label: 'In Kitchen Prep', icon: '🍳', desc: 'Chefs actively cooking & assembling dishes', chipClass: 'preparing' },
+      'ready': { label: 'Out for Delivery / Ready', icon: '🛵', desc: 'Dispatched with rider or ready for pickup', chipClass: 'ready' },
+      'delivered': { label: 'Delivered & Fulfilled', icon: '✓', desc: 'Customer successfully received hot meal', chipClass: 'delivered' },
+      'cancelled': { label: 'Order Cancelled', icon: '✕', desc: 'Order voided or cancelled', chipClass: 'cancelled' }
+    };
+
+    function openDrawer(orderId) {
+      selectedOrderId = orderId;
+      const order = allOrders.find(o => o.id === orderId);
+      if (!order) return;
+
+      const currentStatus = (order.status || 'pending').toLowerCase();
+      currentSelectedDrawerStatus = currentStatus;
+
+      document.getElementById('drawerRefTitle').textContent = '#' + (order.reference || order.id);
+      const items = Array.isArray(order.items) ? order.items : [];
+      const activeConf = STATUS_CONFIG[currentStatus] || STATUS_CONFIG['pending'];
+
+      document.getElementById('drawerBody').innerHTML = `
+        <!-- CUSTOM DESIGNED STATUS DROPDOWN SECTION -->
+        <div class="drawer-section">
+          <div class="drawer-section-title">Update Fulfillment Status</div>
+          <div class="status-dropdown-card">
+            <label class="custom-picker-label">Kitchen Fulfillment Status:</label>
+            
+            <div class="custom-status-picker" id="customStatusPicker">
+              <div class="custom-picker-trigger" id="customPickerTrigger" onclick="toggleCustomStatusDropdown()">
+                <div class="trigger-selected-display" id="pickerSelectedDisplay">
+                  <span class="status-badge-chip ${activeConf.chipClass}">${activeConf.icon} ${activeConf.label}</span>
+                </div>
+                <span class="trigger-chevron" id="pickerChevron">▾</span>
+              </div>
+
+              <!-- Floating Options Dropdown Menu -->
+              <div class="custom-picker-menu" id="customPickerMenu">
+                ${Object.keys(STATUS_CONFIG).map(key => {
+        const conf = STATUS_CONFIG[key];
+        const isSelected = key === currentStatus;
+        return `
+                    <div class="picker-opt-item ${isSelected ? 'selected' : ''}" id="optItem_${key}" onclick="selectCustomDrawerStatus('${key}', '${conf.icon}', '${conf.label}', '${conf.chipClass}')">
+                      <div class="opt-badge ${conf.chipClass}">${conf.icon}</div>
+                      <div class="opt-info">
+                        <div class="opt-title">${conf.label}</div>
+                        <div class="opt-desc">${conf.desc}</div>
+                      </div>
+                      <span class="opt-check">✓</span>
+                    </div>
+                  `;
+      }).join('')}
+              </div>
+            </div>
+            <p style="font-size:0.75rem;color:var(--muted);margin-top:8px;">
+              Choose a status above and click <strong>"Confirm Status Change"</strong> below to apply.
+            </p>
+          </div>
+        </div>
+
+        <!-- CUSTOMER & DISPATCH -->
+        <div class="drawer-section">
+          <div class="drawer-section-title">Customer &amp; Destination</div>
+          <div style="background:#F8FAFC;border-radius:12px;padding:16px;border:1px solid var(--border);">
+            <div style="font-weight:700;font-size:0.96rem;color:var(--charcoal);margin-bottom:4px;">${order.customer_name || 'Guest Diner'}</div>
+            <div style="font-size:0.86rem;color:#64748B;margin-bottom:12px;">📞 ${order.customer_phone || order.phone || 'No phone provided'}</div>
+            <div style="font-size:0.86rem;color:var(--charcoal);line-height:1.5;">
+              <strong>📍 Delivery Address:</strong><br />
+              ${order.delivery_address || 'Walk-in Pickup at Bistro'}
+            </div>
+            ${order.notes ? `
+              <div style="margin-top:10px;padding:10px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;font-size:0.82rem;color:#92400E;">
+                <strong>Special Chef Note:</strong> ${order.notes}
+              </div>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- ITEMS ORDERED -->
+        <div class="drawer-section">
+          <div class="drawer-section-title">Order Items &amp; Pricing</div>
+          <div class="drawer-items-list">
+            ${items.map(it => `
+              <div class="drawer-item-row">
+                <span><strong>${it.quantity || it.qty || 1}x</strong> ${it.name}</span>
+                <strong>₦${((Number(it.price) || 0) * (it.quantity || it.qty || 1)).toLocaleString()}</strong>
+              </div>
+            `).join('')}
+            <div style="height:1px;background:#E2E8F0;margin:6px 0;"></div>
+            <div class="drawer-item-row" style="font-size:0.96rem;font-weight:800;">
+              <span>Total Paid</span>
+              <span style="color:var(--primary);">₦${Number(order.total_amount != null ? order.total_amount : order.amount || 0).toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Drawer Footer: Confirm Status Button directly next to WhatsApp
+      document.getElementById('drawerFooter').innerHTML = `
+        <div class="drawer-actions-row">
+          <button type="button" class="btn-confirm-status" id="btnConfirmStatus" onclick="confirmDrawerStatusChange('${order.id}')">
+            <span>✓ Confirm Status</span>
+          </button>
+          <button type="button" class="btn-wa-notify" id="btnDrawerWhatsapp" onclick="openWhatsAppChat('${order.id}')">
+            <span>💬 WhatsApp Customer</span>
+          </button>
+        </div>
+        <button type="button" class="btn-drawer-close" onclick="closeDrawer(null)">Close Details</button>
+      `;
+
+      document.getElementById('drawerOverlay').classList.add('open');
+    }
+
+    function toggleCustomStatusDropdown() {
+      const trigger = document.getElementById('customPickerTrigger');
+      const menu = document.getElementById('customPickerMenu');
+      if (!trigger || !menu) return;
+      const isOpen = menu.classList.toggle('open');
+      trigger.classList.toggle('open', isOpen);
+    }
+
+    function selectCustomDrawerStatus(statusKey, icon, label, chipClass) {
+      currentSelectedDrawerStatus = statusKey;
+
+      const display = document.getElementById('pickerSelectedDisplay');
+      if (display) {
+        display.innerHTML = `<span class="status-badge-chip ${chipClass}">${icon} ${label}</span>`;
+      }
+
+      document.querySelectorAll('.picker-opt-item').forEach(el => el.classList.remove('selected'));
+      const activeOpt = document.getElementById('optItem_' + statusKey);
+      if (activeOpt) activeOpt.classList.add('selected');
+
+      const trigger = document.getElementById('customPickerTrigger');
+      const menu = document.getElementById('customPickerMenu');
+      if (trigger) trigger.classList.remove('open');
+      if (menu) menu.classList.remove('open');
+    }
+
+    // Close custom dropdown on outside click
+    document.addEventListener('click', (e) => {
+      const picker = document.getElementById('customStatusPicker');
+      if (picker && !picker.contains(e.target)) {
+        const trigger = document.getElementById('customPickerTrigger');
+        const menu = document.getElementById('customPickerMenu');
+        if (trigger) trigger.classList.remove('open');
+        if (menu) menu.classList.remove('open');
+      }
+    });
+
+    function confirmDrawerStatusChange(orderId) {
+      const ord = allOrders.find(o => o.id === orderId || o.reference === orderId);
+      const newStatus = currentSelectedDrawerStatus || (ord ? ord.status : 'pending');
+      const btn = document.getElementById('btnConfirmStatus');
+      if (btn) {
+        btn.innerHTML = '<span>✓ Saved!</span>';
+        btn.classList.add('updated-flash');
+        setTimeout(() => {
+          if (btn) {
+            btn.innerHTML = '<span>✓ Confirm Status</span>';
+            btn.classList.remove('updated-flash');
+          }
+        }, 1500);
+      }
+      changeOrderStatus(orderId, newStatus);
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('dashboardSidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      if (!sidebar) return;
+
+      const isMobile = window.innerWidth <= 900;
+      if (isMobile) {
+        const isOpen = sidebar.classList.toggle('mobile-open');
+        if (backdrop) {
+          if (isOpen) backdrop.classList.add('active');
+          else backdrop.classList.remove('active');
+        }
+      } else {
+        const isCollapsed = sidebar.classList.toggle('collapsed');
+        const icon = document.getElementById('collapseIcon');
+        if (icon) icon.textContent = isCollapsed ? '▶' : '◀';
+        const btn = document.getElementById('btnSidebarCollapse');
+        if (btn) btn.title = isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar';
+        try {
+          localStorage.setItem('tkb_sidebar_collapsed', isCollapsed ? '1' : '0');
+        } catch (e) { }
+      }
+    }
+
+    function closeMobileSidebar() {
+      const sidebar = document.getElementById('dashboardSidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      if (sidebar) sidebar.classList.remove('mobile-open');
+      if (backdrop) backdrop.classList.remove('active');
+    }
+
+    function closeDrawer(e) {
+      document.getElementById('drawerOverlay').classList.remove('open');
+    }
+
+    async function changeOrderStatus(orderId, newStatus) {
+      const ord = allOrders.find(o => o.id === orderId || o.reference === orderId);
+      if (!ord) {
+        console.warn('Order not found for status update:', orderId);
+        return;
+      }
+
+      ord.status = newStatus;
+      updateKPIs();
+      renderOrdersTable();
+      openDrawer(ord.id || ord.reference);
+      showToast(`✓ Order #${ord.reference || ord.id} marked as ${newStatus.toUpperCase()}`);
+
+      // Sync to localStorage for instant local/offline testing
+      try {
+        const localOrders = JSON.parse(localStorage.getItem('tkb_orders') || '[]');
+        const idx = localOrders.findIndex(o => o.reference === ord.reference || o.id === ord.id);
+        if (idx !== -1) {
+          localOrders[idx].status = newStatus;
+          localStorage.setItem('tkb_orders', JSON.stringify(localOrders));
+        }
+        const lastOrder = JSON.parse(localStorage.getItem('tkb_last_order') || 'null');
+        if (lastOrder && (lastOrder.reference === ord.reference || lastOrder.id === ord.id)) {
+          lastOrder.status = newStatus;
+          localStorage.setItem('tkb_last_order', JSON.stringify(lastOrder));
+        }
+      } catch (e) { }
+
+      // Persist to serverless function
+      const token = getAdminAuthToken() || 'tinus2026';
+      try {
+        const res = await fetch('/.netlify/functions/admin-orders', {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            id: ord.id,
+            reference: ord.reference,
+            status: newStatus
+          })
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          console.error('[Admin] Server status update failed:', errData);
+          showToast(`⚠️ Server update warning: ${errData.error || 'Status saved locally'}`);
+        } else {
+          console.info('[Admin] Server status updated successfully for', ord.reference || ord.id);
+        }
+      } catch (e) {
+        console.warn('[Admin] Offline or network notice:', e);
+      }
+    }
+
+    function openWhatsAppChat(orderId) {
+      const ord = allOrders.find(o => o.id === orderId || o.reference === orderId);
+      if (!ord) return;
+
+      const rawPhone = ord.customer_phone || ord.phone || '';
+      const customerPhone = rawPhone ? rawPhone.replace(/[^0-9]/g, '') : TKB_WHATSAPP_PHONE;
+      const status = (ord.status || currentSelectedDrawerStatus || 'pending').toLowerCase();
+
+      let statusDesc = `is being processed`;
+      if (status === 'preparing') statusDesc = `is now cooking fresh in our kitchen! 🍳`;
+      else if (status === 'ready') statusDesc = `is packed & on the way with our dispatch rider! 🛵`;
+      else if (status === 'delivered') statusDesc = `has been delivered. Enjoy your meal! ✨`;
+      else if (status === 'cancelled') statusDesc = `has been cancelled. Please contact us for support.`;
+
+      const trackerPath = (window.location.pathname.includes('/tinuskitchen') ? '/tinuskitchen/order-status.html' : '/order-status.html');
+      const msg = `Hello ${ord.customer_name || 'there'}! This is Tinu's Kitchen Bistro. 🍲\n\nYour order #${ord.reference || ord.id} ${statusDesc}\n\nTrack progress live: ${window.location.origin}${trackerPath}?ref=${encodeURIComponent(ord.reference || ord.id)}`;
+
+      window.open(`https://wa.me/${customerPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // Admin Authentication Management
+    function getAdminAuthToken() {
+      try {
+        return (sessionStorage.getItem('tkb_admin_auth') || '').trim();
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function togglePassVisibility() {
+      const inp = document.getElementById('adminPassInput');
+      const icon = document.getElementById('passEyeIcon');
+      if (!inp) return;
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        if (icon) icon.textContent = '🙈';
+      } else {
+        inp.type = 'password';
+        if (icon) icon.textContent = '👁️';
+      }
+    }
+
+    async function submitAdminLogin(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('adminPassInput');
+      const errBox = document.getElementById('loginErrorMsg');
+      const btn = document.getElementById('btnUnlockDashboard');
+      const pass = (input ? input.value : '').trim();
+
+      if (!pass) return;
+
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span>⏳ Verifying passkey...</span>';
+      }
+      if (errBox) errBox.style.display = 'none';
+
+      let isAuthenticated = false;
+
+      // 1. Verify against Netlify function if online
+      try {
+        const res = await fetch('/.netlify/functions/admin-orders', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${pass}`
+          },
+          body: JSON.stringify({ action: 'verify-login' })
+        });
+        if (res.ok) {
+          isAuthenticated = true;
+        } else if (res.status === 401) {
+          isAuthenticated = false;
+        } else {
+          // If 500 (e.g. Supabase keys missing in dev), fall back to default check
+          if (pass === 'tinus2026' || pass === 'admin') isAuthenticated = true;
+        }
+      } catch (netErr) {
+        // Offline / Live Server direct dev fallback
+        if (pass === 'tinus2026' || pass === 'admin' || pass === '1234') {
+          isAuthenticated = true;
+        }
+      }
+
+      if (isAuthenticated) {
+        sessionStorage.setItem('tkb_admin_auth', pass);
+        const overlay = document.getElementById('adminLoginOverlay');
+        if (overlay) overlay.classList.add('hidden');
+        if (input) input.value = '';
+        showToast('✓ Welcome to Kitchen Operations');
+        fetchOrders(true);
+        fetchZones();
+      } else {
+        if (errBox) {
+          errBox.textContent = '⚠️ Invalid passkey. Please check and try again.';
+          errBox.style.display = 'block';
+        }
+        if (input) {
+          input.focus();
+          input.select();
+        }
+      }
+
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<span>🔒 Unlock Kitchen Dashboard</span>';
+      }
+    }
+
+    function adminLogout(reasonMsg) {
+      try {
+        sessionStorage.removeItem('tkb_admin_auth');
+      } catch (e) { }
+
+      const overlay = document.getElementById('adminLoginOverlay');
+      if (overlay) overlay.classList.remove('hidden');
+
+      const errBox = document.getElementById('loginErrorMsg');
+      if (errBox) {
+        if (reasonMsg) {
+          errBox.textContent = '⚠️ ' + reasonMsg;
+          errBox.style.display = 'block';
+        } else {
+          errBox.style.display = 'none';
+        }
+      }
+
+      const input = document.getElementById('adminPassInput');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+      showToast('✓ Logged out from Kitchen Portal');
+    }
+
+    function checkAuthAndInit() {
+      const token = getAdminAuthToken();
+      const overlay = document.getElementById('adminLoginOverlay');
+      if (!token) {
+        if (overlay) overlay.classList.remove('hidden');
+        const input = document.getElementById('adminPassInput');
+        if (input) input.focus();
+      } else {
+        if (overlay) overlay.classList.add('hidden');
+        fetchOrders(false);
+        fetchZones();
+      }
+    }
+
+    // Delivery Zones & Pricing Management
+    async function fetchZones() {
+      const token = getAdminAuthToken();
+      if (token) {
+        try {
+          const res = await fetch('/.netlify/functions/admin-orders?type=zones', {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && Array.isArray(data.zones) && data.zones.length > 0) {
+              const mapped = data.zones.map(z => ({
+                id: z.id,
+                name: z.name,
+                time: z.time_estimate || z.time || '30 – 45 mins',
+                fee: Number(z.fee) || 0,
+                active: z.active !== false
+              }));
+              localStorage.setItem('tkb_delivery_zones', JSON.stringify(mapped));
+            }
+          }
+        } catch (e) {
+          console.warn('Could not sync zones from server:', e);
+        }
+      }
+      renderZones();
+    }
+
+    function renderZones() {
+      const zones = getZones();
+      const tbody = document.getElementById('zonesTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = zones.map(z => {
+        const isActive = z.active !== false;
+        return `
+          <tr>
+            <td><strong style="color:var(--charcoal);">${z.name}</strong></td>
+            <td><span style="color:#64748B;">⏱️ ${z.time}</span></td>
+            <td><strong style="color:var(--primary);font-size:0.96rem;">₦${Number(z.fee).toLocaleString()}</strong></td>
+            <td>
+              <span class="zone-status-badge ${isActive ? 'active' : 'inactive'}" onclick="toggleZoneStatus('${z.id}')" title="Click to toggle status">
+                ${isActive ? '● Active' : '○ Inactive'}
+              </span>
+            </td>
+            <td style="text-align:right;">
+              <div class="action-icons-group" style="justify-content:flex-end;">
+                <button class="btn-row-action" title="Edit Fee & Time" onclick="editZone('${z.id}')">✏️</button>
+                <button class="btn-row-action" title="Delete Zone" onclick="deleteZone('${z.id}')">🗑️</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function openAddZoneModal() {
+      editingZoneId = null;
+      document.getElementById('zoneModalTitle').textContent = 'Add Delivery Zone';
+      document.getElementById('zoneNameInput').value = '';
+      document.getElementById('zoneTimeInput').value = '';
+      document.getElementById('zoneFeeInput').value = '';
+      document.getElementById('zoneModal').style.display = 'flex';
+    }
+
+    function editZone(zoneId) {
+      const zones = getZones();
+      const zone = zones.find(z => z.id === zoneId);
+      if (!zone) return;
+
+      editingZoneId = zoneId;
+      document.getElementById('zoneModalTitle').textContent = 'Edit Delivery Zone Fee';
+      document.getElementById('zoneNameInput').value = zone.name;
+      document.getElementById('zoneTimeInput').value = zone.time;
+      document.getElementById('zoneFeeInput').value = zone.fee;
+      document.getElementById('zoneModal').style.display = 'flex';
+    }
+
+    function closeZoneModal() {
+      document.getElementById('zoneModal').style.display = 'none';
+    }
+
+    async function saveZone() {
+      const name = document.getElementById('zoneNameInput').value.trim();
+      const time = document.getElementById('zoneTimeInput').value.trim();
+      const fee = Number(document.getElementById('zoneFeeInput').value.trim());
+
+      if (!name || isNaN(fee)) {
+        showAdminAlert('Invalid Input', 'Please enter a valid zone name and delivery fee amount.');
+        return;
+      }
+
+      let zones = getZones();
+      const token = getAdminAuthToken();
+
+      if (editingZoneId) {
+        const idx = zones.findIndex(z => z.id === editingZoneId);
+        if (idx !== -1) {
+          zones[idx].name = name;
+          zones[idx].time = time || '30 – 45 mins';
+          zones[idx].fee = fee;
+        }
+      } else {
+        zones.push({
+          id: 'zone_temp_' + Date.now(),
+          name,
+          time: time || '30 – 45 mins',
+          fee,
+          active: true
+        });
+      }
+
+      saveZones(zones);
+      closeZoneModal();
+      showToast('✓ Delivery zone updated');
+
+      // Persist to Supabase if connected
+      if (token) {
+        try {
+          const res = await fetch('/.netlify/functions/admin-orders', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              action: 'save-zone',
+              id: editingZoneId,
+              name,
+              time_estimate: time || '30 – 45 mins',
+              fee,
+              active: true
+            })
+          });
+          if (res.ok) {
+            fetchZones();
+          }
+        } catch (e) {
+          console.warn('Zone saved locally only:', e);
+        }
+      }
+    }
+
+    async function toggleZoneStatus(zoneId) {
+      let zones = getZones();
+      const z = zones.find(item => item.id === zoneId);
+      if (!z) return;
+      z.active = (z.active === false); // toggle
+      saveZones(zones);
+      showToast(`✓ Zone ${z.name} marked ${z.active ? 'ACTIVE' : 'INACTIVE'}`);
+
+      const token = getAdminAuthToken();
+      if (token && !zoneId.startsWith('zone_temp_')) {
+        try {
+          await fetch('/.netlify/functions/admin-orders', {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              action: 'update-zone',
+              id: zoneId,
+              active: z.active
+            })
+          });
+        } catch (e) { }
+      }
+    }
+
+    function deleteZone(zoneId) {
+      showAdminConfirm(
+        'Delete Delivery Zone',
+        'Are you sure you want to delete this delivery zone? Customers ordering in this neighborhood will no longer see this delivery rate.',
+        async () => {
+          let zones = getZones().filter(z => z.id !== zoneId);
+          saveZones(zones);
+          showToast('✓ Zone removed');
+
+          const token = getAdminAuthToken();
+          if (token && !zoneId.startsWith('zone_temp_')) {
+            try {
+              await fetch(`/.netlify/functions/admin-orders?id=${encodeURIComponent(zoneId)}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+              });
+            } catch (e) { }
+          }
+        }
+      );
+    }
+
+    // Walk-in / Manual Order Modal
+    function openNewOrderModal() {
+      const modal = document.getElementById('walkinModal');
+      if (modal) modal.style.display = 'flex';
+      const nameInp = document.getElementById('walkinCustomerName');
+      if (nameInp) nameInp.focus();
+    }
+
+    function closeWalkinModal() {
+      const modal = document.getElementById('walkinModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    async function submitWalkinOrder(e) {
+      if (e) e.preventDefault();
+      const name = document.getElementById('walkinCustomerName').value.trim();
+      const phone = document.getElementById('walkinCustomerPhone').value.trim();
+      const itemsText = document.getElementById('walkinMealDetails').value.trim();
+      const amount = Number(document.getElementById('walkinAmount').value.trim());
+      const deliveryType = document.getElementById('walkinDeliveryType').value;
+      const notes = document.getElementById('walkinNotes').value.trim();
+      const submitBtn = document.getElementById('btnSubmitWalkin');
+
+      if (!name || isNaN(amount) || amount <= 0) {
+        showAdminAlert('Incomplete Details', 'Please enter a valid customer name and order amount.');
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Saving order...';
+      }
+
+      const newRef = 'TKB-W-' + Math.floor(1000 + Math.random() * 9000);
+      const newOrder = {
+        id: 'ord_' + Date.now(),
+        reference: newRef,
+        customer_name: name,
+        customer_phone: phone || '08000000000',
+        phone: phone || '08000000000',
+        delivery_type: deliveryType,
+        delivery_address: deliveryType === 'pickup' ? 'Counter Pickup' : 'Local Dispatch',
+        location_zone: deliveryType === 'pickup' ? 'Counter Pickup' : 'Iba & LASU Environs',
+        delivery_fee: 0,
+        items: [{ name: itemsText || 'Custom Counter Meal', quantity: 1, price: amount }],
+        amount: amount,
+        total_amount: amount,
+        payment_status: 'paid',
+        status: 'pending',
+        notes: notes || 'Walk-in order created via kitchen board',
+        created_at: new Date().toISOString()
+      };
+
+      // Optimistic UI update
+      allOrders.unshift(newOrder);
+      updateKPIs();
+      renderOrdersTable();
+      closeWalkinModal();
+      showToast(`✓ Walk-in order #${newRef} sent to kitchen`);
+
+      // Persist to Supabase
+      const token = getAdminAuthToken();
+      if (token) {
+        try {
+          const res = await fetch('/.netlify/functions/admin-orders', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              action: 'create-order',
+              ...newOrder
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.order && data.order.id) {
+              newOrder.id = data.order.id;
+            }
+          }
+        } catch (netErr) {
+          console.warn('Walk-in order saved in local cache:', netErr);
+        }
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '✓ Send to Kitchen Queue';
+      }
+    }
+
+    // Custom Dialogs & Modal Helpers (Zero Browser Popups)
+    function showAdminAlert(title, message, icon = 'ℹ️') {
+      const modal = document.getElementById('adminAlertModal');
+      document.getElementById('alertModalIcon').textContent = icon;
+      document.getElementById('alertModalTitle').textContent = title;
+      document.getElementById('alertModalMsg').textContent = message;
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeAdminAlert() {
+      const modal = document.getElementById('adminAlertModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function showAdminConfirm(title, message, onConfirm) {
+      const modal = document.getElementById('adminConfirmModal');
+      document.getElementById('confirmModalTitle').textContent = title;
+      document.getElementById('confirmModalMsg').textContent = message;
+
+      const btnOk = document.getElementById('btnConfirmOk');
+      const btnCancel = document.getElementById('btnConfirmCancel');
+
+      const cleanup = () => {
+        if (modal) modal.style.display = 'none';
+        btnOk.onclick = null;
+        btnCancel.onclick = null;
+      };
+
+      btnOk.onclick = () => {
+        cleanup();
+        if (typeof onConfirm === 'function') onConfirm();
+      };
+      btnCancel.onclick = cleanup;
+
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function exportOrdersCSV() {
+      let csv = 'Order Reference,Customer,Phone,Amount,Status,Date\n';
+      allOrders.forEach(o => {
+        const amt = Number(o.total_amount != null ? o.total_amount : o.amount || 0);
+        const ph = o.customer_phone || o.phone || '';
+        csv += `"${o.reference || o.id}","${o.customer_name || ''}","${ph}","${amt}","${o.status || ''}","${o.created_at || ''}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `tinus_kitchen_orders_${Date.now()}.csv`;
+      a.click();
+      showToast('✓ Orders CSV downloaded');
+    }
+
+    // Initialization on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        if (window.innerWidth > 900 && localStorage.getItem('tkb_sidebar_collapsed') === '1') {
+          const sidebar = document.getElementById('dashboardSidebar');
+          if (sidebar) {
+            sidebar.classList.add('collapsed');
+            const icon = document.getElementById('collapseIcon');
+            if (icon) icon.textContent = '▶';
+          }
+        }
+      } catch (e) { }
+
+      checkAuthAndInit();
+      setInterval(() => {
+        if (getAdminAuthToken()) {
+          fetchOrders(false);
+        }
+      }, 25000);
+    });
+  </script>
+</body>
+
+</html>
