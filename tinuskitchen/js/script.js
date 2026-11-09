@@ -1923,14 +1923,14 @@ function renderTrackModalResults(order, isNewOrder) {
       step: 0,
       badge: '📝 Confirmed',
       tagline: "Order Confirmed",
-      desc: "Ticket sent to Chef Tinu's kitchen queue.",
+      desc: "Ticket sent to kitchen's queue.",
       eta: "20–30m"
     },
     received: {
       step: 0,
       badge: '📝 Confirmed',
       tagline: "Order Confirmed",
-      desc: "Ticket sent to Chef Tinu's kitchen queue.",
+      desc: "Ticket sent to kitchen's queue.",
       eta: "20–30m"
     },
     confirmed: {
@@ -1944,7 +1944,7 @@ function renderTrackModalResults(order, isNewOrder) {
       step: 1,
       badge: '🍳 Cooking',
       tagline: "Cooking Fresh 🍳🔥",
-      desc: "Chef Tinu is crafting your meal in the kitchen.",
+      desc: "We are crafting your meal in the kitchen.",
       eta: "~15m left"
     },
     ready: {

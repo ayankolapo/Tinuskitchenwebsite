@@ -10,6 +10,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
     rel="stylesheet" />
+  <!-- Toastify CSS & JS for Real-time Kitchen Notifications -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <style>
     /* ══════════════════════════════════════════════
        DESIGN TOKENS & SCALABLE DASHBOARD SYSTEM
@@ -688,6 +691,298 @@
       background: #10B981;
       color: #FFFFFF;
       border-color: #10B981;
+    }
+
+    /* ══════════════════════════════════════════════
+       URGENCY, REAL-TIME ALERTS & TOASTIFY STYLES
+       ══════════════════════════════════════════════ */
+    .tab-pill.urgent {
+      background: rgba(239, 68, 68, 0.08);
+      color: #DC2626;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      position: relative;
+    }
+    .tab-pill.urgent:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: #B91C1C;
+    }
+    .tab-pill.urgent.active {
+      background: #EF4444;
+      color: #FFFFFF;
+      border-color: #DC2626;
+    }
+    .tab-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1px 6px;
+      font-size: 0.72rem;
+      border-radius: 20px;
+      margin-left: 6px;
+      background: rgba(100, 116, 139, 0.15);
+      color: inherit;
+    }
+    .tab-pill.active .tab-pill-badge {
+      background: rgba(0, 0, 0, 0.15);
+    }
+    .tab-pill.urgent .tab-pill-badge {
+      background: #EF4444;
+      color: #FFF;
+      animation: pulseAlert 1.5s infinite;
+    }
+    .tab-pill.urgent.active .tab-pill-badge {
+      background: #FFFFFF;
+      color: #DC2626;
+    }
+
+    /* Filter Bar Secondary Controls */
+    .filter-controls-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filter-select-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .filter-select {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.82rem;
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+    .filter-select:hover, .filter-select:focus {
+      border-color: #94A3B8;
+      box-shadow: 0 0 0 2px rgba(212, 155, 40, 0.15);
+    }
+
+    /* Rush Warning Banner */
+    .urgent-rush-banner {
+      background: linear-gradient(90deg, #FEF2F2 0%, #FFFBEB 100%);
+      border: 1px solid #FCA5A5;
+      border-left: 6px solid #EF4444;
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      animation: rushPulse 3s infinite ease-in-out;
+    }
+    .rush-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #991B1B;
+      font-size: 0.88rem;
+    }
+    .rush-banner-icon {
+      font-size: 1.5rem;
+      animation: alarmWiggle 1.2s infinite ease-in-out;
+    }
+    .btn-rush-filter {
+      background: #EF4444;
+      color: #FFFFFF;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .btn-rush-filter:hover {
+      background: #DC2626;
+      transform: translateY(-1px);
+    }
+
+    /* Wait Time & Urgency Indicators in Table */
+    .datetime-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .datetime-time {
+      font-size: 0.82rem;
+      color: #475569;
+    }
+    .wait-time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 20px;
+      width: fit-content;
+    }
+    .wait-time-badge.fresh {
+      background: #ECFDF5;
+      color: #047857;
+    }
+    .wait-time-badge.warning {
+      background: #FFFBEB;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+    }
+    .wait-time-badge.critical {
+      background: #FEF2F2;
+      color: #DC2626;
+      border: 1px solid #FCA5A5;
+      animation: pulseAlert 1.5s infinite;
+    }
+
+    /* Row Attention Styles */
+    .orders-table tr.urgent-attention {
+      background: rgba(254, 242, 242, 0.45);
+      border-left: 4px solid #EF4444;
+    }
+    .orders-table tr.urgent-attention:hover {
+      background: rgba(254, 242, 242, 0.75);
+    }
+    .orders-table tr.newly-arrived {
+      animation: orderFlash 2s 4 ease-in-out;
+    }
+
+    /* Quick Action Button on Row */
+    .btn-quick-advance {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .btn-quick-advance.cook {
+      background: #FEF3C7;
+      color: #92400E;
+      border-color: #FCD34D;
+    }
+    .btn-quick-advance.cook:hover {
+      background: #F59E0B;
+      color: #FFFFFF;
+      border-color: #D97706;
+      transform: translateY(-1px);
+    }
+    .btn-quick-advance.ready {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border-color: #DDD6FE;
+    }
+    .btn-quick-advance.ready:hover {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #6D28D9;
+      transform: translateY(-1px);
+    }
+    .btn-quick-advance.deliver {
+      background: #D1FAE5;
+      color: #065F46;
+      border-color: #A7F3D0;
+    }
+    .btn-quick-advance.deliver:hover {
+      background: #10B981;
+      color: #FFFFFF;
+      border-color: #059669;
+      transform: translateY(-1px);
+    }
+
+    /* Custom Toastify Styles */
+    .custom-order-toast {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: #F8FAFC;
+    }
+    .toast-alarm-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .toast-bell-icon {
+      font-size: 1.6rem;
+      animation: alarmWiggle 0.8s infinite ease-in-out;
+    }
+    .toast-title-box {
+      flex: 1;
+    }
+    .toast-headline {
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: #F8FAFC;
+      letter-spacing: 0.04em;
+    }
+    .toast-ref-amt {
+      font-size: 0.82rem;
+      color: #FDE68A;
+      font-weight: 700;
+    }
+    .toast-urgency-chip {
+      background: #EF4444;
+      color: #FFFFFF;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 10px;
+      letter-spacing: 0.05em;
+      animation: pulseAlert 1.2s infinite;
+    }
+    .toast-order-meta {
+      font-size: 0.8rem;
+      color: #CBD5E1;
+      line-height: 1.35;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 6px;
+    }
+    .toast-items-preview {
+      color: #94A3B8;
+      font-size: 0.76rem;
+      margin-top: 2px;
+    }
+    .toast-action-hint {
+      font-size: 0.74rem;
+      color: #D49B28;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    @keyframes pulseAlert {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(0.97); }
+    }
+    @keyframes rushPulse {
+      0%, 100% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+      50% { box-shadow: 0 4px 18px rgba(239, 68, 68, 0.18); }
+    }
+    @keyframes alarmWiggle {
+      0%, 100% { transform: rotate(0); }
+      20% { transform: rotate(-16deg); }
+      40% { transform: rotate(14deg); }
+      60% { transform: rotate(-10deg); }
+      80% { transform: rotate(8deg); }
+    }
+    @keyframes orderFlash {
+      0%, 100% { background: transparent; }
+      50% { background: rgba(245, 158, 11, 0.22); }
     }
 
     /* ══════════════════════════════════════════════
@@ -1878,9 +2173,13 @@
       </div>
 
       <div class="topbar-actions">
-        <button class="btn-topbar active" id="btnSoundToggle" onclick="toggleSound()">
+        <button class="btn-topbar active" id="btnSoundToggle" onclick="toggleSound()" title="Toggle Kitchen Audio Alerts">
           <span id="soundIcon">🔔</span>
           <span id="soundLabel">Sound On</span>
+        </button>
+        <button class="btn-topbar" id="btnTestSound" onclick="testAlarmSound()" title="Test Order Chime Volume">
+          <span>🔊</span>
+          <span id="testSoundLabel">Test Chime</span>
         </button>
         <button class="btn-topbar" onclick="fetchOrders(true)" id="btnManualRefresh" title="Refresh Feed">
           <span>🔄</span>
@@ -1938,20 +2237,70 @@
           </div>
         </div>
 
+        <!-- URGENT RUSH BANNER (Auto-displays when overdue pending orders exist) -->
+        <div id="urgentRushBanner" class="urgent-rush-banner" style="display:none;">
+          <div class="rush-banner-left">
+            <span class="rush-banner-icon">🚨</span>
+            <div>
+              <strong>Kitchen Attention Alert:</strong>
+              <span id="rushBannerText">Orders waiting over 10 minutes without acceptance!</span>
+            </div>
+          </div>
+          <div class="rush-banner-actions">
+            <button class="btn-rush-filter" onclick="filterByUrgentOnly()">⚡ View Urgent Orders</button>
+          </div>
+        </div>
+
         <!-- ORDERS DATA TABLE -->
         <div class="table-container-card">
           <!-- Filter Tabs Bar -->
           <div class="table-tabs-bar">
-            <div class="tab-pills-group">
-              <button class="tab-pill active" onclick="setFilter('all', this)">All Orders</button>
-              <button class="tab-pill" onclick="setFilter('pending', this)">Pending</button>
-              <button class="tab-pill" onclick="setFilter('preparing', this)">In Kitchen</button>
-              <button class="tab-pill" onclick="setFilter('ready', this)">Out for Delivery</button>
-              <button class="tab-pill" onclick="setFilter('delivered', this)">Delivered</button>
-              <button class="tab-pill" onclick="setFilter('cancelled', this)">Cancelled</button>
+            <div class="tab-pills-group" id="filterTabsGroup">
+              <button class="tab-pill active" onclick="setFilter('all', this)" id="tabPillAll">
+                All Orders <span class="tab-pill-badge" id="badgeCountAll">0</span>
+              </button>
+              <button class="tab-pill urgent" onclick="setFilter('urgent', this)" id="tabPillUrgent">
+                ⚡ Urgent / Action Needed <span class="tab-pill-badge" id="badgeCountUrgent">0</span>
+              </button>
+              <button class="tab-pill" onclick="setFilter('pending', this)" id="tabPillPending">
+                Pending <span class="tab-pill-badge" id="badgeCountPending">0</span>
+              </button>
+              <button class="tab-pill" onclick="setFilter('preparing', this)" id="tabPillPreparing">
+                In Kitchen <span class="tab-pill-badge" id="badgeCountPreparing">0</span>
+              </button>
+              <button class="tab-pill" onclick="setFilter('ready', this)" id="tabPillReady">
+                Out for Delivery <span class="tab-pill-badge" id="badgeCountReady">0</span>
+              </button>
+              <button class="tab-pill" onclick="setFilter('delivered', this)" id="tabPillDelivered">
+                Delivered <span class="tab-pill-badge" id="badgeCountDelivered">0</span>
+              </button>
+              <button class="tab-pill" onclick="setFilter('cancelled', this)" id="tabPillCancelled">
+                Cancelled <span class="tab-pill-badge" id="badgeCountCancelled">0</span>
+              </button>
             </div>
-            <div style="font-size:0.8rem;color:#64748B;">
-              Showing <strong id="ordersCountBadge">0</strong> orders
+
+            <!-- Urgent & Zone Filters -->
+            <div class="filter-controls-group">
+              <div class="filter-select-wrap">
+                <span>Sort:</span>
+                <select id="orderSortSelect" class="filter-select" onchange="handleSortChange(this.value)">
+                  <option value="urgent">🚨 Most Urgent First (Oldest Waiting)</option>
+                  <option value="newest" selected>⚡ Newest Placed First</option>
+                  <option value="amount">💰 Highest Total (₦)</option>
+                  <option value="oldest">⏳ Oldest Placed</option>
+                </select>
+              </div>
+
+              <div class="filter-select-wrap">
+                <span>Zone:</span>
+                <select id="orderZoneFilter" class="filter-select" onchange="handleZoneFilter(this.value)">
+                  <option value="all">📍 All Delivery Zones</option>
+                </select>
+              </div>
+
+              <div style="font-size:0.8rem;color:#64748B;margin-left:4px;">
+                Showing <strong id="ordersCountBadge">0</strong> orders
+              </div>
             </div>
           </div>
 
@@ -1963,7 +2312,7 @@
                   <th style="width:36px;"><input type="checkbox" id="selectAllCheckbox"
                       onchange="toggleSelectAll(this)" /></th>
                   <th>Order</th>
-                  <th>Date &amp; Time</th>
+                  <th>Wait Time &amp; Placed</th>
                   <th>Customer</th>
                   <th>Payment</th>
                   <th>Total</th>
@@ -2171,10 +2520,18 @@
     const TKB_WHATSAPP_PHONE = '2348162918036';
     let allOrders = [];
     let currentFilter = 'all';
+    let currentSort = 'newest';
+    let currentZoneFilter = 'all';
     let searchQuery = '';
-    let soundEnabled = true;
+    let soundEnabled = localStorage.getItem('tkb_sound_enabled') !== '0';
     let selectedOrderId = null;
     let editingZoneId = null;
+
+    // Real-time Audio Alarm & Order Detection State
+    let audioCtx = null;
+    let knownOrderRefs = new Set();
+    let isInitialOrderLoad = true;
+    let newlyArrivedRefs = new Set();
 
     // Default Lagos Delivery Zones (Synced with Supabase)
     const DEFAULT_ZONES = [
@@ -2317,13 +2674,332 @@
       setTimeout(() => t.classList.remove('show'), 2800);
     }
 
+    // ══════════════════════════════════════════════
+    // WEB AUDIO ALARM BELL & TOASTIFY NOTIFICATIONS
+    // ══════════════════════════════════════════════
+    function initAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Auto-unlock Web Audio on first user interaction
+    ['click', 'keydown', 'touchstart'].forEach(evt => {
+      document.addEventListener(evt, () => initAudioContext(), { once: true });
+    });
+
+    // Realistic brass kitchen service bell / alarm chime synthesizer
+    function playOrderAlarmSound() {
+      if (!soundEnabled) return;
+      initAudioContext();
+      if (!audioCtx) return;
+
+      try {
+        const now = audioCtx.currentTime;
+
+        function ringBellNote(startTime, baseFreq, duration = 0.85) {
+          const osc1 = audioCtx.createOscillator();
+          const gain1 = audioCtx.createGain();
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(baseFreq, startTime);
+
+          const osc2 = audioCtx.createOscillator();
+          const gain2 = audioCtx.createGain();
+          osc2.type = 'triangle';
+          osc2.frequency.setValueAtTime(baseFreq * 2.756, startTime); // metallic chime overtone
+
+          const osc3 = audioCtx.createOscillator();
+          const gain3 = audioCtx.createGain();
+          osc3.type = 'sine';
+          osc3.frequency.setValueAtTime(baseFreq * 5.404, startTime); // shimmer harmonic
+
+          gain1.gain.setValueAtTime(0, startTime);
+          gain1.gain.linearRampToValueAtTime(0.60, startTime + 0.005);
+          gain1.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+          gain2.gain.setValueAtTime(0, startTime);
+          gain2.gain.linearRampToValueAtTime(0.28, startTime + 0.005);
+          gain2.gain.exponentialRampToValueAtTime(0.0001, startTime + duration * 0.7);
+
+          gain3.gain.setValueAtTime(0, startTime);
+          gain3.gain.linearRampToValueAtTime(0.18, startTime + 0.003);
+          gain3.gain.exponentialRampToValueAtTime(0.0001, startTime + duration * 0.5);
+
+          osc1.connect(gain1);
+          osc2.connect(gain2);
+          osc3.connect(gain3);
+
+          gain1.connect(audioCtx.destination);
+          gain2.connect(audioCtx.destination);
+          gain3.connect(audioCtx.destination);
+
+          osc1.start(startTime);
+          osc2.start(startTime);
+          osc3.start(startTime);
+
+          osc1.stop(startTime + duration);
+          osc2.stop(startTime + duration * 0.7);
+          osc3.stop(startTime + duration * 0.5);
+        }
+
+        // Restaurant Order Bell Strike: DING-DONG! ... (pause) ... DING-DONG!
+        ringBellNote(now + 0.00, 880, 0.65);       // A5
+        ringBellNote(now + 0.22, 1318.5, 0.95);    // E6
+        ringBellNote(now + 0.75, 880, 0.65);       // A5
+        ringBellNote(now + 0.97, 1396.9, 1.25);    // F6 (high attention urgent chime)
+      } catch (err) {
+        console.warn('Audio alarm playback error:', err);
+      }
+    }
+
+    function testAlarmSound() {
+      initAudioContext();
+      playOrderAlarmSound();
+
+      const sampleOrder = {
+        reference: 'TKB-TEST-' + Math.floor(100 + Math.random() * 900),
+        customer_name: 'Chef Test Diner',
+        amount: 8500,
+        total_amount: 8500,
+        location_zone: 'Inside Ipaye',
+        items: [{ name: 'Assorted Jollof Fiesta', quantity: 2 }]
+      };
+      showOrderToastify(sampleOrder);
+      showToast('🔊 Order chime & Toastify preview triggered!');
+    }
+
     function toggleSound() {
       soundEnabled = !soundEnabled;
+      try {
+        localStorage.setItem('tkb_sound_enabled', soundEnabled ? '1' : '0');
+      } catch (e) { }
+
       const btn = document.getElementById('btnSoundToggle');
       document.getElementById('soundIcon').textContent = soundEnabled ? '🔔' : '🔕';
       document.getElementById('soundLabel').textContent = soundEnabled ? 'Sound On' : 'Muted';
       btn.classList.toggle('active', soundEnabled);
-      showToast(soundEnabled ? 'Kitchen sound alerts active' : 'Sound alerts muted');
+
+      if (soundEnabled) {
+        initAudioContext();
+        if (audioCtx) {
+          const osc = audioCtx.createOscillator();
+          const g = audioCtx.createGain();
+          osc.frequency.setValueAtTime(1046.5, audioCtx.currentTime);
+          g.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+          osc.connect(g);
+          g.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.25);
+        }
+        showToast('🔔 Kitchen sound alerts active');
+      } else {
+        showToast('🔕 Sound alerts muted');
+      }
+    }
+
+    // Rich Toastify Notification for Incoming Orders
+    function showOrderToastify(order) {
+      const ref = order.reference || order.id || 'Order';
+      const customer = order.customer_name || 'Guest Diner';
+      const amount = Number(order.total_amount != null ? order.total_amount : order.amount || 0).toLocaleString();
+      const zone = order.location_zone || (order.delivery_address ? order.delivery_address.split(',')[0] : 'Local Dispatch');
+      const items = Array.isArray(order.items) ? order.items : [];
+      const itemCount = items.reduce((sum, i) => sum + (i.quantity || i.qty || 1), 0) || 1;
+      const itemNames = items.slice(0, 2).map(i => `${i.quantity || 1}x ${i.name || i.title}`).join(', ') + (items.length > 2 ? ` +${items.length - 2} more` : '');
+
+      if (typeof Toastify === 'function') {
+        const toastNode = document.createElement('div');
+        toastNode.className = 'custom-order-toast';
+        toastNode.innerHTML = `
+          <div class="toast-alarm-header">
+            <span class="toast-bell-icon">🛎️</span>
+            <div class="toast-title-box">
+              <div class="toast-headline">NEW ORDER RECEIVED!</div>
+              <div class="toast-ref-amt">#${ref} • <span class="toast-naira">₦${amount}</span></div>
+            </div>
+            <span class="toast-urgency-chip">ACTION NEEDED</span>
+          </div>
+          <div class="toast-order-meta">
+            <div>👤 <strong>${customer}</strong> • 📍 ${zone}</div>
+            <div class="toast-items-preview">🍲 ${itemNames || `${itemCount} item(s)`}</div>
+          </div>
+          <div class="toast-action-hint">👉 Click to open order &amp; begin kitchen prep</div>
+        `;
+
+        Toastify({
+          node: toastNode,
+          duration: 12000,
+          close: true,
+          gravity: "top",
+          position: "right",
+          stopOnFocus: true,
+          style: {
+            background: "#1E1A17",
+            border: "1px solid #D49B28",
+            borderLeft: "6px solid #C21B17",
+            boxShadow: "0 12px 35px rgba(0, 0, 0, 0.45), 0 0 15px rgba(194, 27, 23, 0.25)",
+            borderRadius: "12px",
+            padding: "14px 16px",
+            cursor: "pointer",
+            minWidth: "340px",
+            maxWidth: "440px"
+          },
+          onClick: function () {
+            openDrawer(order.id || order.reference);
+            highlightOrderRow(order.id || order.reference);
+          }
+        }).showToast();
+      } else {
+        showToast(`🛎️ NEW ORDER: #${ref} from ${customer} (₦${amount})`);
+      }
+    }
+
+    function highlightOrderRow(orderRef) {
+      const rows = document.querySelectorAll('#ordersTableBody tr');
+      rows.forEach(r => {
+        if (r.textContent.includes(orderRef)) {
+          r.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          r.classList.add('newly-arrived');
+          setTimeout(() => r.classList.remove('newly-arrived'), 4000);
+        }
+      });
+    }
+
+    // ══════════════════════════════════════════════
+    // URGENCY CALCULATION & FILTER HELPERS
+    // ══════════════════════════════════════════════
+    function getOrderWaitTime(order) {
+      const orderTime = new Date(order.created_at || order.paid_at || Date.now()).getTime();
+      const now = Date.now();
+      const diffMins = Math.max(0, Math.floor((now - orderTime) / (1000 * 60)));
+
+      const status = (order.status || 'pending').toLowerCase();
+      let urgencyLevel = 'fresh';
+      let badgeText = `${diffMins}m ago`;
+
+      if (diffMins < 1) {
+        badgeText = 'Just now';
+        urgencyLevel = 'fresh';
+      } else if (diffMins >= 60) {
+        const hours = Math.floor(diffMins / 60);
+        const rem = diffMins % 60;
+        badgeText = `${hours}h ${rem}m ago`;
+      }
+
+      if (status === 'pending') {
+        if (diffMins >= 15) urgencyLevel = 'critical';
+        else if (diffMins >= 7) urgencyLevel = 'warning';
+        else urgencyLevel = 'fresh';
+      } else if (status === 'preparing') {
+        if (diffMins >= 25) urgencyLevel = 'critical';
+        else if (diffMins >= 15) urgencyLevel = 'warning';
+        else urgencyLevel = 'fresh';
+      } else if (status === 'ready') {
+        if (diffMins >= 30) urgencyLevel = 'warning';
+        else urgencyLevel = 'fresh';
+      } else {
+        urgencyLevel = 'fresh';
+      }
+
+      return { diffMins, badgeText, urgencyLevel };
+    }
+
+    function isOrderUrgent(order) {
+      const status = (order.status || 'pending').toLowerCase();
+      if (status === 'pending') return true;
+      if (status === 'preparing') {
+        const wait = getOrderWaitTime(order);
+        if (wait.diffMins >= 15) return true;
+      }
+      return false;
+    }
+
+    function handleSortChange(sortVal) {
+      currentSort = sortVal;
+      renderOrdersTable();
+    }
+
+    function handleZoneFilter(zoneVal) {
+      currentZoneFilter = zoneVal;
+      renderOrdersTable();
+    }
+
+    function filterByUrgentOnly() {
+      const urgentTabBtn = document.getElementById('tabPillUrgent');
+      if (urgentTabBtn) setFilter('urgent', urgentTabBtn);
+    }
+
+    function populateZoneFilterDropdown() {
+      const select = document.getElementById('orderZoneFilter');
+      if (!select) return;
+
+      const zonesSet = new Set();
+      DEFAULT_ZONES.forEach(z => { if (z.name) zonesSet.add(z.name); });
+      allOrders.forEach(o => {
+        if (o.location_zone && o.location_zone !== 'Counter Pickup') {
+          zonesSet.add(o.location_zone);
+        }
+      });
+
+      const currentVal = select.value || 'all';
+      let html = '<option value="all">📍 All Delivery Zones</option>';
+      Array.from(zonesSet).sort().forEach(z => {
+        const selected = z === currentVal ? 'selected' : '';
+        html += `<option value="${z}" ${selected}>${z}</option>`;
+      });
+      select.innerHTML = html;
+    }
+
+    async function quickAdvanceStatus(orderId, nextStatus, event) {
+      if (event) event.stopPropagation();
+      const ord = allOrders.find(o => o.id === orderId || o.reference === orderId);
+      if (!ord) return;
+
+      ord.status = nextStatus;
+      updateKPIs();
+      renderOrdersTable();
+      showToast(`✓ Order #${ord.reference || ord.id} marked as ${nextStatus.toUpperCase()}`);
+
+      // Sync local storage
+      try {
+        const localOrders = JSON.parse(localStorage.getItem('tkb_orders') || '[]');
+        const idx = localOrders.findIndex(o => o.reference === ord.reference || o.id === ord.id);
+        if (idx !== -1) {
+          localOrders[idx].status = nextStatus;
+          localStorage.setItem('tkb_orders', JSON.stringify(localOrders));
+        }
+      } catch (e) { }
+
+      // Server update
+      const token = getAdminAuthToken();
+      if (token) {
+        try {
+          const res = await fetch('/.netlify/functions/admin-orders', {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              id: ord.id,
+              reference: ord.reference,
+              status: nextStatus
+            })
+          });
+          if (!res.ok) {
+            console.warn('[Admin] Server quick-status update failed');
+          }
+        } catch (e) {
+          console.warn('[Admin] Offline or network error during quick status:', e);
+        }
+      }
     }
 
     // View Switching
@@ -2398,12 +3074,43 @@
         allOrders = DEMO_ORDERS.map(o => ({ ...o, total_amount: o.amount, customer_phone: o.phone }));
       }
 
-      // Always sort by most recent first (newest created_at / paid_at at top)
-      allOrders.sort((a, b) => {
-        const timeA = new Date(a.created_at || a.paid_at || 0).getTime();
-        const timeB = new Date(b.created_at || b.paid_at || 0).getTime();
-        return timeB - timeA;
-      });
+      // 🛎️ NEW INCOMING ORDER DETECTION & ALARM TRIGGER
+      const currentRefs = new Set(allOrders.map(o => o.reference || o.id));
+
+      if (isInitialOrderLoad) {
+        knownOrderRefs = currentRefs;
+        isInitialOrderLoad = false;
+      } else {
+        const brandNewOrders = [];
+        allOrders.forEach(o => {
+          const ref = o.reference || o.id;
+          if (ref && !knownOrderRefs.has(ref)) {
+            brandNewOrders.push(o);
+            knownOrderRefs.add(ref);
+          }
+        });
+
+        if (brandNewOrders.length > 0) {
+          console.info(`[Admin] 🛎️ ${brandNewOrders.length} new order(s) arrived! Playing kitchen alarm.`);
+          playOrderAlarmSound();
+
+          brandNewOrders.forEach((newOrd, idx) => {
+            newlyArrivedRefs.add(newOrd.reference || newOrd.id);
+            setTimeout(() => {
+              showOrderToastify(newOrd);
+            }, idx * 400);
+          });
+
+          // Glow effect timeout for new rows
+          setTimeout(() => {
+            newlyArrivedRefs.clear();
+            renderOrdersTable();
+          }, 10000);
+        }
+      }
+
+      // Populate dynamic delivery zones dropdown
+      populateZoneFilterDropdown();
 
       updateKPIs();
       renderOrdersTable();
@@ -2412,16 +3119,54 @@
 
     function updateKPIs() {
       const total = allOrders.length;
-      const pending = allOrders.filter(o => o.status === 'pending').length;
-      const preparing = allOrders.filter(o => o.status === 'preparing').length;
-      const delivered = allOrders.filter(o => o.status === 'delivered');
+      const pending = allOrders.filter(o => (o.status || 'pending').toLowerCase() === 'pending').length;
+      const preparing = allOrders.filter(o => (o.status || '').toLowerCase() === 'preparing').length;
+      const ready = allOrders.filter(o => (o.status || '').toLowerCase() === 'ready').length;
+      const delivered = allOrders.filter(o => (o.status || '').toLowerCase() === 'delivered');
+      const cancelled = allOrders.filter(o => (o.status || '').toLowerCase() === 'cancelled').length;
       const revenue = delivered.reduce((sum, o) => sum + (Number(o.total_amount != null ? o.total_amount : o.amount) || 0), 0);
 
+      const urgentOrders = allOrders.filter(isOrderUrgent);
+      const urgentCount = urgentOrders.length;
+
+      // Update KPI Cards
       document.getElementById('kpiTotal').textContent = total;
       document.getElementById('kpiPending').textContent = pending;
       document.getElementById('kpiPreparing').textContent = preparing;
       document.getElementById('kpiRevenue').textContent = '₦' + revenue.toLocaleString();
       document.getElementById('sideBadgePending').textContent = pending;
+
+      // Update Filter Tab Counter Badges
+      const setBadge = (id, count) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = count;
+      };
+      setBadge('badgeCountAll', total);
+      setBadge('badgeCountUrgent', urgentCount);
+      setBadge('badgeCountPending', pending);
+      setBadge('badgeCountPreparing', preparing);
+      setBadge('badgeCountReady', ready);
+      setBadge('badgeCountDelivered', delivered.length);
+      setBadge('badgeCountCancelled', cancelled);
+
+      // Kitchen Rush Alert Banner Check (Pending > 10 mins)
+      const overduePendingOrders = allOrders.filter(o => {
+        const st = (o.status || 'pending').toLowerCase();
+        if (st !== 'pending') return false;
+        const wait = getOrderWaitTime(o);
+        return wait.diffMins >= 10;
+      });
+
+      const rushBanner = document.getElementById('urgentRushBanner');
+      const rushText = document.getElementById('rushBannerText');
+      if (rushBanner && rushText) {
+        if (overduePendingOrders.length > 0) {
+          rushBanner.style.display = 'flex';
+          rushText.textContent = `${overduePendingOrders.length} incoming order(s) waiting over 10 minutes without acceptance!`;
+        } else {
+          rushBanner.style.display = 'none';
+        }
+      }
     }
 
     function setFilter(filter, btn) {
@@ -2441,17 +3186,60 @@
       if (!tbody) return;
 
       let filtered = allOrders.filter(o => {
-        if (currentFilter !== 'all' && (o.status || '').toLowerCase() !== currentFilter) {
+        const status = (o.status || 'pending').toLowerCase();
+
+        // 1. Filter by Tab
+        if (currentFilter === 'urgent') {
+          if (!isOrderUrgent(o)) return false;
+        } else if (currentFilter !== 'all' && status !== currentFilter) {
           return false;
         }
+
+        // 2. Filter by Delivery Zone
+        if (currentZoneFilter !== 'all') {
+          const zone = (o.location_zone || '').toLowerCase();
+          if (zone !== currentZoneFilter.toLowerCase()) return false;
+        }
+
+        // 3. Filter by Search Query
         if (searchQuery) {
           const matchName = (o.customer_name || '').toLowerCase().includes(searchQuery);
           const matchRef = (o.reference || '').toLowerCase().includes(searchQuery);
-          const matchPhone = (o.phone || '').includes(searchQuery);
+          const matchPhone = (o.phone || o.customer_phone || '').includes(searchQuery);
           const matchAddr = (o.delivery_address || '').toLowerCase().includes(searchQuery);
           if (!matchName && !matchRef && !matchPhone && !matchAddr) return false;
         }
+
         return true;
+      });
+
+      // 4. Multi-Tier Urgency & Priority Sorting
+      filtered.sort((a, b) => {
+        const timeA = new Date(a.created_at || a.paid_at || 0).getTime();
+        const timeB = new Date(b.created_at || b.paid_at || 0).getTime();
+        const amtA = Number(a.total_amount != null ? a.total_amount : a.amount || 0);
+        const amtB = Number(b.total_amount != null ? b.total_amount : b.amount || 0);
+
+        if (currentSort === 'urgent') {
+          const getUrgencyScore = (ord) => {
+            const st = (ord.status || 'pending').toLowerCase();
+            const wait = getOrderWaitTime(ord).diffMins;
+            if (st === 'pending' && wait >= 15) return 1000 + wait;
+            if (st === 'pending') return 500 + wait;
+            if (st === 'preparing' && wait >= 20) return 300 + wait;
+            if (st === 'preparing') return 100 + wait;
+            if (st === 'ready') return 50 + wait;
+            return 0;
+          };
+          return getUrgencyScore(b) - getUrgencyScore(a);
+        } else if (currentSort === 'newest') {
+          return timeB - timeA;
+        } else if (currentSort === 'oldest') {
+          return timeA - timeB;
+        } else if (currentSort === 'amount') {
+          return amtB - amtA;
+        }
+        return timeB - timeA;
       });
 
       document.getElementById('ordersCountBadge').textContent = filtered.length;
@@ -2461,8 +3249,8 @@
           <tr>
             <td colspan="10" style="text-align:center;padding:48px 20px;color:var(--muted);">
               <div style="font-size:2rem;margin-bottom:8px;">🔍</div>
-              <strong>No orders found</strong>
-              <p style="font-size:0.8rem;margin-top:4px;">Try adjusting your filter or search query</p>
+              <strong>No orders found matching criteria</strong>
+              <p style="font-size:0.8rem;margin-top:4px;">Try selecting another filter or clearing search</p>
             </td>
           </tr>
         `;
@@ -2470,18 +3258,44 @@
       }
 
       tbody.innerHTML = filtered.map(o => {
-        const dateStr = o.created_at ? new Date(o.created_at).toLocaleTimeString('en-NG', { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' }) : 'Just now';
+        const orderDate = o.created_at ? new Date(o.created_at) : new Date();
+        const dateStr = orderDate.toLocaleTimeString('en-NG', { hour: '2-digit', minute: '2-digit' }) + ', ' + orderDate.toLocaleDateString('en-NG', { day: 'numeric', month: 'short' });
+        const wait = getOrderWaitTime(o);
         const items = Array.isArray(o.items) ? o.items : [];
         const itemsCount = items.reduce((sum, i) => sum + (i.quantity || i.qty || 1), 0) || 1;
         const status = (o.status || 'pending').toLowerCase();
         const statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
-        const locationZone = o.location_zone || (o.delivery_address ? o.delivery_address.split(',')[0] : 'Iba Central');
+        const locationZone = o.location_zone || (o.delivery_address ? o.delivery_address.split(',')[0] : 'Local Dispatch');
+        const isNewlyArrived = newlyArrivedRefs.has(o.reference || o.id);
+
+        let rowClasses = [];
+        if (wait.urgencyLevel === 'critical' && (status === 'pending' || status === 'preparing')) {
+          rowClasses.push('urgent-attention');
+        }
+        if (isNewlyArrived) rowClasses.push('newly-arrived');
+
+        // Quick 1-Click Action Button on Table Row
+        let quickBtnHtml = '';
+        if (status === 'pending') {
+          quickBtnHtml = `<button class="btn-quick-advance cook" onclick="quickAdvanceStatus('${o.id}', 'preparing', event)" title="One-Click Accept & Cook">🍳 Accept</button>`;
+        } else if (status === 'preparing') {
+          quickBtnHtml = `<button class="btn-quick-advance ready" onclick="quickAdvanceStatus('${o.id}', 'ready', event)" title="One-Click Mark Ready for Dispatch">🛵 Ready</button>`;
+        } else if (status === 'ready') {
+          quickBtnHtml = `<button class="btn-quick-advance deliver" onclick="quickAdvanceStatus('${o.id}', 'delivered', event)" title="One-Click Mark Fulfilled">✓ Delivered</button>`;
+        }
 
         return `
-          <tr onclick="openDrawer('${o.id}')">
+          <tr class="${rowClasses.join(' ')}" onclick="openDrawer('${o.id}')">
             <td onclick="event.stopPropagation()"><input type="checkbox" /></td>
             <td><span class="order-id-badge">#${o.reference || o.id}</span></td>
-            <td><span style="color:#64748B;font-size:0.82rem;">${dateStr}</span></td>
+            <td>
+              <div class="datetime-cell">
+                <span class="wait-time-badge ${wait.urgencyLevel}">
+                  ${wait.urgencyLevel === 'critical' ? '⚠️ ' : ''}${wait.badgeText}
+                </span>
+                <span class="datetime-time">${dateStr}</span>
+              </div>
+            </td>
             <td>
               <div class="customer-cell">
                 <span class="customer-name">${o.customer_name || 'Guest Diner'}</span>
@@ -2501,6 +3315,7 @@
             </td>
             <td style="text-align:right;" onclick="event.stopPropagation()">
               <div class="action-icons-group" style="justify-content:flex-end;">
+                ${quickBtnHtml}
                 <button class="btn-row-action" title="View Order Details" onclick="openDrawer('${o.id}')">👁️</button>
                 <button class="btn-row-action wa" title="WhatsApp Customer" onclick="openWhatsAppChat('${o.id}')">💬</button>
               </div>
@@ -3163,6 +3978,11 @@
 
       // Optimistic UI update
       allOrders.unshift(newOrder);
+      knownOrderRefs.add(newRef);
+      newlyArrivedRefs.add(newRef);
+      playOrderAlarmSound();
+      showOrderToastify(newOrder);
+
       updateKPIs();
       renderOrdersTable();
       closeWalkinModal();
@@ -3266,12 +4086,30 @@
         }
       } catch (e) { }
 
+      // Sync sound toggle button UI with stored preference
+      const btnSound = document.getElementById('btnSoundToggle');
+      if (btnSound) {
+        document.getElementById('soundIcon').textContent = soundEnabled ? '🔔' : '🔕';
+        document.getElementById('soundLabel').textContent = soundEnabled ? 'Sound On' : 'Muted';
+        btnSound.classList.toggle('active', soundEnabled);
+      }
+
       checkAuthAndInit();
+
+      // Poll server for new orders every 25 seconds
       setInterval(() => {
         if (getAdminAuthToken()) {
           fetchOrders(false);
         }
       }, 25000);
+
+      // Real-time wait-time & urgency ticker (updates badges every 30s)
+      setInterval(() => {
+        if (allOrders && allOrders.length > 0) {
+          renderOrdersTable();
+          updateKPIs();
+        }
+      }, 30000);
     });
   </script>
 </body>
